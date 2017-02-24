@@ -15,7 +15,18 @@
 		E98D8A151E60F6C500D5647F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98D8A131E60F6C500D5647F /* LaunchScreen.storyboard */; };
 		E98D8A1D1E60F78200D5647F /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98D8A1C1E60F78200D5647F /* MicrosoftBandKit_iOS.framework */; };
 		E98D8A201E60F7AA00D5647F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98D8A1F1E60F7AA00D5647F /* CoreBluetooth.framework */; };
+		E98D8A281E60FCC000D5647F /* NorwayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A271E60FCC000D5647F /* NorwayTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E98D8A2A1E60FCC000D5647F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E98D89FA1E60F6C500D5647F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E98D8A011E60F6C500D5647F;
+			remoteInfo = norway;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E98D8A021E60F6C500D5647F /* norway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = norway.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +41,9 @@
 		E98D8A161E60F6C500D5647F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E98D8A1C1E60F78200D5647F /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
 		E98D8A1F1E60F7AA00D5647F /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		E98D8A251E60FCC000D5647F /* NorwayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NorwayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E98D8A271E60FCC000D5647F /* NorwayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NorwayTests.m; sourceTree = "<group>"; };
+		E98D8A291E60FCC000D5647F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +56,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E98D8A221E60FCBF00D5647F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -50,6 +71,7 @@
 			children = (
 				E98D8A1C1E60F78200D5647F /* MicrosoftBandKit_iOS.framework */,
 				E98D8A041E60F6C500D5647F /* norway */,
+				E98D8A261E60FCC000D5647F /* NorwayTests */,
 				E98D8A031E60F6C500D5647F /* Products */,
 				E98D8A1E1E60F7AA00D5647F /* Frameworks */,
 			);
@@ -59,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				E98D8A021E60F6C500D5647F /* norway.app */,
+				E98D8A251E60FCC000D5647F /* NorwayTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +118,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E98D8A261E60FCC000D5647F /* NorwayTests */ = {
+			isa = PBXGroup;
+			children = (
+				E98D8A271E60FCC000D5647F /* NorwayTests.m */,
+				E98D8A291E60FCC000D5647F /* Info.plist */,
+			);
+			path = NorwayTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -115,6 +147,24 @@
 			productReference = E98D8A021E60F6C500D5647F /* norway.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E98D8A241E60FCBF00D5647F /* NorwayTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E98D8A2C1E60FCC000D5647F /* Build configuration list for PBXNativeTarget "NorwayTests" */;
+			buildPhases = (
+				E98D8A211E60FCBF00D5647F /* Sources */,
+				E98D8A221E60FCBF00D5647F /* Frameworks */,
+				E98D8A231E60FCBF00D5647F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E98D8A2B1E60FCC000D5647F /* PBXTargetDependency */,
+			);
+			name = NorwayTests;
+			productName = NorwayTests;
+			productReference = E98D8A251E60FCC000D5647F /* NorwayTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -134,6 +184,12 @@
 							};
 						};
 					};
+					E98D8A241E60FCBF00D5647F = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = XT4Q76JCC4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E98D8A011E60F6C500D5647F;
+					};
 				};
 			};
 			buildConfigurationList = E98D89FD1E60F6C500D5647F /* Build configuration list for PBXProject "norway" */;
@@ -150,6 +206,7 @@
 			projectRoot = "";
 			targets = (
 				E98D8A011E60F6C500D5647F /* norway */,
+				E98D8A241E60FCBF00D5647F /* NorwayTests */,
 			);
 		};
 /* End PBXProject section */
@@ -162,6 +219,13 @@
 				E98D8A151E60F6C500D5647F /* LaunchScreen.storyboard in Resources */,
 				E98D8A121E60F6C500D5647F /* Assets.xcassets in Resources */,
 				E98D8A101E60F6C500D5647F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E98D8A231E60FCBF00D5647F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,7 +242,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E98D8A211E60FCBF00D5647F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E98D8A281E60FCC000D5647F /* NorwayTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E98D8A2B1E60FCC000D5647F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E98D8A011E60F6C500D5647F /* norway */;
+			targetProxy = E98D8A2A1E60FCC000D5647F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E98D8A0E1E60F6C500D5647F /* Main.storyboard */ = {
@@ -322,6 +402,32 @@
 			};
 			name = Release;
 		};
+		E98D8A2D1E60FCC000D5647F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = XT4Q76JCC4;
+				INFOPLIST_FILE = NorwayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.thomasdenney.NorwayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/norway.app/norway";
+			};
+			name = Debug;
+		};
+		E98D8A2E1E60FCC000D5647F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = XT4Q76JCC4;
+				INFOPLIST_FILE = NorwayTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.thomasdenney.NorwayTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/norway.app/norway";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -339,6 +445,14 @@
 			buildConfigurations = (
 				E98D8A1A1E60F6C500D5647F /* Debug */,
 				E98D8A1B1E60F6C500D5647F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E98D8A2C1E60FCC000D5647F /* Build configuration list for PBXNativeTarget "NorwayTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E98D8A2D1E60FCC000D5647F /* Debug */,
+				E98D8A2E1E60FCC000D5647F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
