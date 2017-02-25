@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "SerializedDatabase.h"
+#import "Query.h"
 
 @interface NorwayTests : XCTestCase
 
@@ -24,15 +26,14 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
+- (void)testDatabaseCreation {
+    NSError * error;
+    SerializedDatabase * serialDB = [[SerializedDatabase alloc] initWithPath:@":memory:" readOnly:NO error:&error];
+    XCTAssertNotNil(serialDB);
+    [serialDB serialTransaction:^(sqlite3 *db) {
+        Query * create = [[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS sessions (id INTEGER PRIMARY KEY AUTOINCREMENT)", nil];
+        XCTAssertNotNil(create);
+        XCTAssert([create execute]);
     }];
 }
 

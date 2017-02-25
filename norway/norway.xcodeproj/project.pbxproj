@@ -16,6 +16,9 @@
 		E98D8A1D1E60F78200D5647F /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98D8A1C1E60F78200D5647F /* MicrosoftBandKit_iOS.framework */; };
 		E98D8A201E60F7AA00D5647F /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E98D8A1F1E60F7AA00D5647F /* CoreBluetooth.framework */; };
 		E98D8A281E60FCC000D5647F /* NorwayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A271E60FCC000D5647F /* NorwayTests.m */; };
+		E98D8A311E60FDD100D5647F /* SerializedDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A301E60FDD100D5647F /* SerializedDatabase.m */; };
+		E98D8A331E61013200D5647F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E98D8A321E61013200D5647F /* libsqlite3.tbd */; };
+		E98D8A371E61025A00D5647F /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A361E61025A00D5647F /* Query.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,11 @@
 		E98D8A251E60FCC000D5647F /* NorwayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NorwayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98D8A271E60FCC000D5647F /* NorwayTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NorwayTests.m; sourceTree = "<group>"; };
 		E98D8A291E60FCC000D5647F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E98D8A2F1E60FDD100D5647F /* SerializedDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerializedDatabase.h; sourceTree = "<group>"; };
+		E98D8A301E60FDD100D5647F /* SerializedDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerializedDatabase.m; sourceTree = "<group>"; };
+		E98D8A321E61013200D5647F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E98D8A351E61025A00D5647F /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
+		E98D8A361E61025A00D5647F /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E98D8A331E61013200D5647F /* libsqlite3.tbd in Frameworks */,
 				E98D8A201E60F7AA00D5647F /* CoreBluetooth.framework in Frameworks */,
 				E98D8A1D1E60F78200D5647F /* MicrosoftBandKit_iOS.framework in Frameworks */,
 			);
@@ -89,6 +98,7 @@
 		E98D8A041E60F6C500D5647F /* norway */ = {
 			isa = PBXGroup;
 			children = (
+				E98D8A341E61024C00D5647F /* Database */,
 				E98D8A081E60F6C500D5647F /* AppDelegate.h */,
 				E98D8A091E60F6C500D5647F /* AppDelegate.m */,
 				E98D8A0B1E60F6C500D5647F /* ViewController.h */,
@@ -113,6 +123,7 @@
 		E98D8A1E1E60F7AA00D5647F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E98D8A321E61013200D5647F /* libsqlite3.tbd */,
 				E98D8A1F1E60F7AA00D5647F /* CoreBluetooth.framework */,
 			);
 			name = Frameworks;
@@ -125,6 +136,17 @@
 				E98D8A291E60FCC000D5647F /* Info.plist */,
 			);
 			path = NorwayTests;
+			sourceTree = "<group>";
+		};
+		E98D8A341E61024C00D5647F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				E98D8A2F1E60FDD100D5647F /* SerializedDatabase.h */,
+				E98D8A301E60FDD100D5647F /* SerializedDatabase.m */,
+				E98D8A351E61025A00D5647F /* Query.h */,
+				E98D8A361E61025A00D5647F /* Query.m */,
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,9 +258,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E98D8A311E60FDD100D5647F /* SerializedDatabase.m in Sources */,
 				E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */,
 				E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */,
 				E98D8A071E60F6C500D5647F /* main.m in Sources */,
+				E98D8A371E61025A00D5647F /* Query.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
