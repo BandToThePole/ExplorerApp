@@ -18,8 +18,8 @@
 @implementation NorwayDatabase
 
 + (NSString*)databasePath {
-    NSString * documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, NO)[0];
-    return [documents stringByAppendingString:@"documents.db"];
+    NSString * documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    return [documents stringByAppendingPathComponent:@"documents.db"];
 }
 
 - (BOOL)_createSchemaIfNecessary {

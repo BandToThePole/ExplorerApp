@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConnectionManager.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<ConnectionManagerDelegate>
 
+@property ConnectionManager * connectionManager;
 
 @end
 

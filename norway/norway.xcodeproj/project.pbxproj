@@ -14,8 +14,9 @@
 		E97ED23F1E636A7B009CF014 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED23E1E636A7B009CF014 /* Location.m */; };
 		E97ED2431E636D6B009CF014 /* NSNumber+NWY.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2421E636D6B009CF014 /* NSNumber+NWY.m */; };
 		E97ED2461E637027009CF014 /* DatabaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2451E637027009CF014 /* DatabaseObject.m */; };
-		E97ED2481E637179009CF014 /* NSArray+NWY.h in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2471E637179009CF014 /* NSArray+NWY.h */; };
 		E97ED24A1E6371BD009CF014 /* NSArray+NWY.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2491E6371BD009CF014 /* NSArray+NWY.m */; };
+		E97ED24E1E637656009CF014 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED24D1E637656009CF014 /* ConnectionManager.m */; };
+		E97ED2511E637A95009CF014 /* BandDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2501E637A95009CF014 /* BandDataStream.m */; };
 		E98D8A071E60F6C500D5647F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A061E60F6C500D5647F /* main.m */; };
 		E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A091E60F6C500D5647F /* AppDelegate.m */; };
 		E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A0C1E60F6C500D5647F /* ViewController.m */; };
@@ -57,6 +58,10 @@
 		E97ED2451E637027009CF014 /* DatabaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseObject.m; sourceTree = "<group>"; };
 		E97ED2471E637179009CF014 /* NSArray+NWY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NWY.h"; sourceTree = "<group>"; };
 		E97ED2491E6371BD009CF014 /* NSArray+NWY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+NWY.m"; sourceTree = "<group>"; };
+		E97ED24C1E637656009CF014 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		E97ED24D1E637656009CF014 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
+		E97ED24F1E637A95009CF014 /* BandDataStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandDataStream.h; sourceTree = "<group>"; };
+		E97ED2501E637A95009CF014 /* BandDataStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandDataStream.m; sourceTree = "<group>"; };
 		E98D8A021E60F6C500D5647F /* norway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = norway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98D8A061E60F6C500D5647F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E98D8A081E60F6C500D5647F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -111,6 +116,17 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		E97ED24B1E637640009CF014 /* Band Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E97ED24C1E637656009CF014 /* ConnectionManager.h */,
+				E97ED24D1E637656009CF014 /* ConnectionManager.m */,
+				E97ED24F1E637A95009CF014 /* BandDataStream.h */,
+				E97ED2501E637A95009CF014 /* BandDataStream.m */,
+			);
+			name = "Band Controller";
+			sourceTree = "<group>";
+		};
 		E98D89F91E60F6C500D5647F = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +150,7 @@
 		E98D8A041E60F6C500D5647F /* norway */ = {
 			isa = PBXGroup;
 			children = (
+				E97ED24B1E637640009CF014 /* Band Controller */,
 				E97ED2401E636CC5009CF014 /* Utilities */,
 				E98D8A341E61024C00D5647F /* Model/Database */,
 				E98D8A081E60F6C500D5647F /* AppDelegate.h */,
@@ -312,14 +329,15 @@
 				E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */,
 				E97ED2461E637027009CF014 /* DatabaseObject.m in Sources */,
 				E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */,
-				E97ED2481E637179009CF014 /* NSArray+NWY.h in Sources */,
 				E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */,
 				E97ED23C1E6366EE009CF014 /* Calories.m in Sources */,
 				E97ED23F1E636A7B009CF014 /* Location.m in Sources */,
 				E97ED24A1E6371BD009CF014 /* NSArray+NWY.m in Sources */,
 				E98D8A071E60F6C500D5647F /* main.m in Sources */,
 				E97ED2431E636D6B009CF014 /* NSNumber+NWY.m in Sources */,
+				E97ED24E1E637656009CF014 /* ConnectionManager.m in Sources */,
 				E97ED2391E635C39009CF014 /* HeartRate.m in Sources */,
+				E97ED2511E637A95009CF014 /* BandDataStream.m in Sources */,
 				E98D8A371E61025A00D5647F /* Query.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

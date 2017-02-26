@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NorwayDatabase.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property NorwayDatabase * database;
 
+@property (strong, nonatomic) UIWindow *window;
 
 @end
 

@@ -86,6 +86,11 @@
     XCTAssert([session save:serialDB]);
 }
 
+- (void)testDatabaseDiskCreation {
+    SerializedDatabase * serialDB = [[SerializedDatabase alloc] initWithPath:[NorwayDatabase databasePath] readOnly:NO error:nil];
+    XCTAssertNotNil(serialDB);
+}
+
 - (void)testNumberTypes {
     XCTAssert([@(42) nwy_isInteger]);
     XCTAssert([@(42.0) nwy_isFloatingPoint]);
