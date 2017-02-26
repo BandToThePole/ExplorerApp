@@ -15,6 +15,8 @@ extern NSString * SerializedDatabaseError;
 
 - (instancetype)initWithPath:(NSString*)path readOnly:(BOOL)readOnly error:(NSError**)error;
 
+- (sqlite3_int64)lastInsertID;
+
 @property (readonly) BOOL isReadOnly;
 
 - (void)serialTransaction:(void(^)(sqlite3 * db))transaction;

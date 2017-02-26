@@ -23,6 +23,7 @@
 - (NSInteger)columnIndex:(NSString*)name;
 
 - (NSInteger)integerColumn:(NSInteger)column;
+- (NSDate*)dateColumn:(NSInteger)column;
 - (NSString*)stringColumn:(NSInteger)column;
 
 @end

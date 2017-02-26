@@ -7,6 +7,7 @@
 //
 
 #import "Query.h"
+#import "NSNumber+NWY.h"
 
 @interface Query () {
     sqlite3_stmt * _statement;
@@ -39,8 +40,16 @@
             [params addObject:arg];
             if ([arg isKindOfClass:[NSNumber class]]) {
                 NSNumber * num = arg;
-                // TODO: Handle double case
-                sqlite3_bind_int64(_statement, (int)params.count, num.integerValue);
+                if ([num nwy_isFloatingPoint]) {
+                    sqlite3_bind_double(_statement, (int)params.count, num.doubleValue);
+                }
+                else {
+                    sqlite3_bind_int64(_statement, (int)params.count, num.integerValue);
+                }
+            }
+            else if ([arg isKindOfClass:[NSDate class]]) {
+                NSDate * date = arg;
+                sqlite3_bind_double(_statement, (int)params.count, date.timeIntervalSinceReferenceDate);
             }
             else if ([arg isKindOfClass:[NSString class]]) {
                 NSString * str = arg;
@@ -86,6 +95,10 @@
 
 - (NSInteger)integerColumn:(NSInteger)column {
     return (NSInteger)sqlite3_column_int64(_statement, (int)column);
+}
+
+- (NSDate*)dateColumn:(NSInteger)column {
+    return [NSDate dateWithTimeIntervalSinceReferenceDate:sqlite3_column_double(_statement, (int)column)];
 }
 
 - (NSString*)stringColumn:(NSInteger)column {

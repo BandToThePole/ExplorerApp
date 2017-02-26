@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SerializedDatabase.h"
 #import "Query.h"
+#import "RecordingSession.h"
 
 @interface NorwayDatabase : NSObject
 
@@ -16,5 +17,6 @@
 - (instancetype)initWithSerialDatabase:(SerializedDatabase*)serialDB;
 
 @property (readonly) SerializedDatabase * serialDB;
+
 
 @end

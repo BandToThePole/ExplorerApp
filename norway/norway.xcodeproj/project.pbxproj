@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E97ED2331E6359EE009CF014 /* NorwayDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2321E6359EE009CF014 /* NorwayDatabase.m */; };
+		E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2351E635B6B009CF014 /* RecordingSession.m */; };
+		E97ED2391E635C39009CF014 /* HeartRate.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2381E635C39009CF014 /* HeartRate.m */; };
+		E97ED23C1E6366EE009CF014 /* Calories.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED23B1E6366EE009CF014 /* Calories.m */; };
+		E97ED23F1E636A7B009CF014 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED23E1E636A7B009CF014 /* Location.m */; };
+		E97ED2431E636D6B009CF014 /* NSNumber+NWY.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2421E636D6B009CF014 /* NSNumber+NWY.m */; };
 		E98D8A071E60F6C500D5647F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A061E60F6C500D5647F /* main.m */; };
 		E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A091E60F6C500D5647F /* AppDelegate.m */; };
 		E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A0C1E60F6C500D5647F /* ViewController.m */; };
@@ -35,6 +40,16 @@
 /* Begin PBXFileReference section */
 		E97ED2311E6359EE009CF014 /* NorwayDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NorwayDatabase.h; sourceTree = "<group>"; };
 		E97ED2321E6359EE009CF014 /* NorwayDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NorwayDatabase.m; sourceTree = "<group>"; };
+		E97ED2341E635B6B009CF014 /* RecordingSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingSession.h; sourceTree = "<group>"; };
+		E97ED2351E635B6B009CF014 /* RecordingSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingSession.m; sourceTree = "<group>"; };
+		E97ED2371E635C39009CF014 /* HeartRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeartRate.h; sourceTree = "<group>"; };
+		E97ED2381E635C39009CF014 /* HeartRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeartRate.m; sourceTree = "<group>"; };
+		E97ED23A1E6366EE009CF014 /* Calories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calories.h; sourceTree = "<group>"; };
+		E97ED23B1E6366EE009CF014 /* Calories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calories.m; sourceTree = "<group>"; };
+		E97ED23D1E636A7B009CF014 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		E97ED23E1E636A7B009CF014 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		E97ED2411E636CE3009CF014 /* NSNumber+NWY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NWY.h"; sourceTree = "<group>"; };
+		E97ED2421E636D6B009CF014 /* NSNumber+NWY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+NWY.m"; sourceTree = "<group>"; };
 		E98D8A021E60F6C500D5647F /* norway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = norway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98D8A061E60F6C500D5647F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E98D8A081E60F6C500D5647F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E97ED2401E636CC5009CF014 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E97ED2411E636CE3009CF014 /* NSNumber+NWY.h */,
+				E97ED2421E636D6B009CF014 /* NSNumber+NWY.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		E98D89F91E60F6C500D5647F = {
 			isa = PBXGroup;
 			children = (
@@ -101,7 +125,8 @@
 		E98D8A041E60F6C500D5647F /* norway */ = {
 			isa = PBXGroup;
 			children = (
-				E98D8A341E61024C00D5647F /* Database */,
+				E97ED2401E636CC5009CF014 /* Utilities */,
+				E98D8A341E61024C00D5647F /* Model/Database */,
 				E98D8A081E60F6C500D5647F /* AppDelegate.h */,
 				E98D8A091E60F6C500D5647F /* AppDelegate.m */,
 				E98D8A0B1E60F6C500D5647F /* ViewController.h */,
@@ -141,7 +166,7 @@
 			path = NorwayTests;
 			sourceTree = "<group>";
 		};
-		E98D8A341E61024C00D5647F /* Database */ = {
+		E98D8A341E61024C00D5647F /* Model/Database */ = {
 			isa = PBXGroup;
 			children = (
 				E98D8A2F1E60FDD100D5647F /* SerializedDatabase.h */,
@@ -150,8 +175,16 @@
 				E98D8A361E61025A00D5647F /* Query.m */,
 				E97ED2311E6359EE009CF014 /* NorwayDatabase.h */,
 				E97ED2321E6359EE009CF014 /* NorwayDatabase.m */,
+				E97ED2341E635B6B009CF014 /* RecordingSession.h */,
+				E97ED2351E635B6B009CF014 /* RecordingSession.m */,
+				E97ED2371E635C39009CF014 /* HeartRate.h */,
+				E97ED2381E635C39009CF014 /* HeartRate.m */,
+				E97ED23A1E6366EE009CF014 /* Calories.h */,
+				E97ED23B1E6366EE009CF014 /* Calories.m */,
+				E97ED23D1E636A7B009CF014 /* Location.h */,
+				E97ED23E1E636A7B009CF014 /* Location.m */,
 			);
-			name = Database;
+			name = Model/Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,7 +300,12 @@
 				E98D8A311E60FDD100D5647F /* SerializedDatabase.m in Sources */,
 				E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */,
 				E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */,
+				E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */,
+				E97ED23C1E6366EE009CF014 /* Calories.m in Sources */,
+				E97ED23F1E636A7B009CF014 /* Location.m in Sources */,
 				E98D8A071E60F6C500D5647F /* main.m in Sources */,
+				E97ED2431E636D6B009CF014 /* NSNumber+NWY.m in Sources */,
+				E97ED2391E635C39009CF014 /* HeartRate.m in Sources */,
 				E98D8A371E61025A00D5647F /* Query.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
