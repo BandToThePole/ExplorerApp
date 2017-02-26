@@ -22,6 +22,7 @@
 
 - (NSInteger)columnIndex:(NSString*)name;
 
+- (double)doubleColumn:(NSInteger)column;
 - (NSInteger)integerColumn:(NSInteger)column;
 - (NSDate*)dateColumn:(NSInteger)column;
 - (NSString*)stringColumn:(NSInteger)column;

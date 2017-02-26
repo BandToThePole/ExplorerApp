@@ -7,6 +7,7 @@
 //
 
 #import "NorwayDatabase.h"
+#import "NSArray+NWY.h"
 
 @interface NorwayDatabase ()
 
@@ -41,6 +42,41 @@
         }
     }
     return self;
+}
+
+- (NSArray<RecordingSession*>*)allSessions {
+    NSMutableArray * sessions = [NSMutableArray new];
+    [self.serialDB serialTransaction:^(sqlite3 *db) {
+        Query * sessionsQuery = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM sessions", nil];
+        while ([sessionsQuery next]) {
+            RecordingSession * session = [[RecordingSession alloc] initWithQuery:sessionsQuery];
+            
+            Query * locations = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM locations WHERE session = ?", @(session.databaseID), nil];
+            while ([locations next]) {
+                [session addLocation:[[Location alloc] initWithQuery:locations]];
+            }
+            
+            Query * heartrates = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM heartrates WHERE session = ?", @(session.databaseID), nil];
+            while ([heartrates next]) {
+                [session addHeartRate:[[HeartRate alloc] initWithQuery:heartrates]];
+            }
+            
+            Query * calories = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM calories WHERE session = ?", @(session.databaseID), nil];
+            while ([calories next]) {
+                [session addCalories:[[Calories alloc] initWithQuery:locations]];
+            }
+            
+            [sessions addObject:session];
+        }
+    }];
+    return sessions;
+}
+
+- (NSDictionary*)serializeSessions:(NSArray<RecordingSession *> *)sessions {
+    NSISO8601DateFormatter * df = [NSISO8601DateFormatter new];
+    return @{ @"recording_sessions": [sessions nwy_map:^id(id x) {
+        return [x serializedDictionaryWithFormatter:df];
+    }] };
 }
 
 @end

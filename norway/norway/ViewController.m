@@ -9,8 +9,9 @@
 #import "ViewController.h"
 #import "BandDataStream.h"
 #import "AppDelegate.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ViewController ()
+@interface ViewController ()<MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *stopButton;
@@ -64,6 +65,29 @@
     self.stopButton.enabled = NO;
     
     [self.stream end];
+}
+
+- (IBAction)sendAction:(id)sender {
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController * vc = [[MFMailComposeViewController alloc] init];
+        vc.mailComposeDelegate = self;
+        NSLog(@"Created delegate");
+        AppDelegate * ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
+        NSArray * array = [ad.database allSessions];
+        NSLog(@"Array %@", array);
+        NSDictionary * dict = [ad.database serializeSessions:array];
+        NSLog(@"Dict: %@", dict);
+        // TODO: Don't actually pretty print...
+        NSData * databaseData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+        NSLog(@"JSON: %@", [[NSString alloc] initWithData:databaseData encoding:NSUTF8StringEncoding]);
+        [vc addAttachmentData:databaseData mimeType:@"application/json" fileName:@"alldata.json"];
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

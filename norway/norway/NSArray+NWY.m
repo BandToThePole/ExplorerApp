@@ -11,8 +11,10 @@
 @implementation NSArray (NWY)
 
 - (NSArray*)nwy_map:(id (^)(id))f {
+    NSLog(@"Mapping");
     NSMutableArray * m = [[NSMutableArray alloc] initWithCapacity:self.count];
     for (id obj in self) {
+        NSLog(@"%@", obj);
         [m addObject:f(obj)];
     }
     return m;

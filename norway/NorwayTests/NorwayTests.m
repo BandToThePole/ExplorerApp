@@ -61,20 +61,25 @@
     
     NSDate * heartRateDate = [session.startDate dateByAddingTimeInterval:1];
     
+    NSISO8601DateFormatter * df = [NSISO8601DateFormatter new];
+    
     for (int i = 0; i < 10; i++) {
         HeartRate * hr = [[HeartRate alloc] initWithTime:heartRateDate bpm:65 + i];
         [session addHeartRate:hr];
+        XCTAssertNotNil([hr serializedDictionaryWithFormatter:df]);
         // For initial insertion
         XCTAssert([hr save:serialDB]);
         // Test update
         XCTAssert([hr save:serialDB]);
         
         Calories * kcal = [[Calories alloc] initWithTime:heartRateDate totalCalories:i * 1000];
+        XCTAssertNotNil([kcal serializedDictionaryWithFormatter:df]);
         [session addCalories:kcal];
         XCTAssert([kcal save:serialDB]);
         XCTAssert([kcal save:serialDB]);
         
         Location * loc = [[Location alloc] initWithTime:heartRateDate lat:0 long:0];
+        XCTAssertNotNil([loc serializedDictionaryWithFormatter:df]);
         [session addLocation:loc];
         XCTAssert([loc save:serialDB]);
         XCTAssert([loc save:serialDB]);
@@ -82,8 +87,12 @@
         heartRateDate = [heartRateDate dateByAddingTimeInterval:1];
     }
     
+    XCTAssertNotNil([session serializedDictionaryWithFormatter:df]);
+    
     [session end];
     XCTAssert([session save:serialDB]);
+    
+    XCTAssertNotNil([norwayDB serializeSessions:[norwayDB allSessions]]);
 }
 
 - (void)testDatabaseDiskCreation {

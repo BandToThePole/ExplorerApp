@@ -10,11 +10,19 @@
 
 @implementation DatabaseObject
 
+- (instancetype)initWithQuery:(Query *)query {
+    self = [super init];
+    if (self) {
+        self.databaseID = [query integerColumn:0];
+    }
+    return self;
+}
+
 - (BOOL)save:(SerializedDatabase *)serialDB {
     return YES;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
     return @{};
 }
 

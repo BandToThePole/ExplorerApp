@@ -20,6 +20,16 @@
     return self;
 }
 
+- (instancetype)initWithQuery:(Query *)query {
+    self = [super initWithQuery:query];
+    if (self) {
+        self.time = [query dateColumn:2];
+        self.latitude = [query doubleColumn:3];
+        self.longitude = [query doubleColumn:4];
+    }
+    return self;
+}
+
 - (BOOL)save:(SerializedDatabase *)serializedDB {
     __block BOOL success;
     [serializedDB serialTransaction:^(sqlite3 *db) {
@@ -38,7 +48,7 @@
     return success;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
     return @{ @"time": [formatter stringFromDate:self.time], @"lat": @(self.latitude), @"long": @(self.longitude) };
 }
 

@@ -12,9 +12,11 @@
 
 @interface DatabaseObject : NSObject
 
+- (instancetype)initWithQuery:(Query*)query;
+
 @property NSInteger databaseID;
 
 - (BOOL)save:(SerializedDatabase*)serialDB;
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter*)formatter;
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter*)formatter;
 
 @end

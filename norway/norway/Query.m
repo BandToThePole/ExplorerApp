@@ -93,6 +93,10 @@
     return [self.columns objectForKey:name.lowercaseString] ? [[self.columns objectForKey:name.lowercaseString] integerValue] : -1;
 }
 
+- (double)doubleColumn:(NSInteger)column {
+    return sqlite3_column_double(_statement, (int)column);
+}
+
 - (NSInteger)integerColumn:(NSInteger)column {
     return (NSInteger)sqlite3_column_int64(_statement, (int)column);
 }

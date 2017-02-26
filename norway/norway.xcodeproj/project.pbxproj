@@ -17,6 +17,7 @@
 		E97ED24A1E6371BD009CF014 /* NSArray+NWY.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2491E6371BD009CF014 /* NSArray+NWY.m */; };
 		E97ED24E1E637656009CF014 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED24D1E637656009CF014 /* ConnectionManager.m */; };
 		E97ED2511E637A95009CF014 /* BandDataStream.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2501E637A95009CF014 /* BandDataStream.m */; };
+		E97ED2531E638481009CF014 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97ED2521E638481009CF014 /* MessageUI.framework */; };
 		E98D8A071E60F6C500D5647F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A061E60F6C500D5647F /* main.m */; };
 		E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A091E60F6C500D5647F /* AppDelegate.m */; };
 		E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A0C1E60F6C500D5647F /* ViewController.m */; };
@@ -62,6 +63,7 @@
 		E97ED24D1E637656009CF014 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		E97ED24F1E637A95009CF014 /* BandDataStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BandDataStream.h; sourceTree = "<group>"; };
 		E97ED2501E637A95009CF014 /* BandDataStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BandDataStream.m; sourceTree = "<group>"; };
+		E97ED2521E638481009CF014 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		E98D8A021E60F6C500D5647F /* norway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = norway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98D8A061E60F6C500D5647F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E98D8A081E60F6C500D5647F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E97ED2531E638481009CF014 /* MessageUI.framework in Frameworks */,
 				E98D8A331E61013200D5647F /* libsqlite3.tbd in Frameworks */,
 				E98D8A201E60F7AA00D5647F /* CoreBluetooth.framework in Frameworks */,
 				E98D8A1D1E60F78200D5647F /* MicrosoftBandKit_iOS.framework in Frameworks */,
@@ -177,6 +180,7 @@
 		E98D8A1E1E60F7AA00D5647F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E97ED2521E638481009CF014 /* MessageUI.framework */,
 				E98D8A321E61013200D5647F /* libsqlite3.tbd */,
 				E98D8A1F1E60F7AA00D5647F /* CoreBluetooth.framework */,
 			);

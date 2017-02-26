@@ -24,6 +24,14 @@
     return self;
 }
 
+- (instancetype)initWithQuery:(Query *)query {
+    if (self = [super initWithQuery:query]) {
+        self.time = [query dateColumn:2];
+        self.bpm = [query integerColumn:3];
+    }
+    return self;
+}
+
 - (BOOL)save:(SerializedDatabase *)serialDB {
     __block BOOL success = NO;
     [serialDB serialTransaction:^(sqlite3 *db) {
@@ -42,7 +50,7 @@
     return success;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
     return @{ @"time": [formatter stringFromDate:self.time], @"bpm": @(self.bpm) };
 }
 

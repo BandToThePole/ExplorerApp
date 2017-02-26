@@ -19,6 +19,14 @@
     return self;
 }
 
+- (instancetype)initWithQuery:(Query *)query {
+    if (self = [super initWithQuery:query]) {
+        self.time = [query dateColumn:2];
+        self.kcalCount = [query integerColumn:3];
+    }
+    return self;
+}
+
 - (BOOL)save:(SerializedDatabase *)database {
     __block BOOL success = NO;
     [database serialTransaction:^(sqlite3 *db) {
@@ -37,7 +45,7 @@
     return success;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
     return @{ @"time": [formatter stringFromDate:self.time], @"total_calories_since_start": @(self.kcalCount) };
 }
 

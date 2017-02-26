@@ -25,6 +25,21 @@
         self.heartDataMutable = [NSMutableArray new];
         self.caloriesMutable = [NSMutableArray new];
         self.locationsMutable = [NSMutableArray new];
+        
+        self.startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+        self.endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+    }
+    return self;
+}
+
+- (instancetype)initWithQuery:(Query *)query {
+    if (self = [super initWithQuery:query]) {
+        self.heartDataMutable = [NSMutableArray new];
+        self.caloriesMutable = [NSMutableArray new];
+        self.locationsMutable = [NSMutableArray new];
+        
+        self.startDate = [query dateColumn:2];
+        self.endDate = [query dateColumn:3];
     }
     return self;
 }
@@ -82,7 +97,7 @@
     return self.locationsMutable;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
     return @{ @"start": [formatter stringFromDate:self.startDate],
               @"end": [formatter stringFromDate:self.endDate],
               // This would be much nicer in Swift (laughing crying face emoji)

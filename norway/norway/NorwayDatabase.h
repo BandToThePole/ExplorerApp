@@ -20,5 +20,8 @@
 
 @property (readonly) SerializedDatabase * serialDB;
 
+- (NSArray<RecordingSession*>*)allSessions;
+
+- (NSDictionary*)serializeSessions:(NSArray<RecordingSession*>*)sessions;
 
 @end
