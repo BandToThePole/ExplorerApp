@@ -13,6 +13,9 @@
 		E97ED23C1E6366EE009CF014 /* Calories.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED23B1E6366EE009CF014 /* Calories.m */; };
 		E97ED23F1E636A7B009CF014 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED23E1E636A7B009CF014 /* Location.m */; };
 		E97ED2431E636D6B009CF014 /* NSNumber+NWY.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2421E636D6B009CF014 /* NSNumber+NWY.m */; };
+		E97ED2461E637027009CF014 /* DatabaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2451E637027009CF014 /* DatabaseObject.m */; };
+		E97ED2481E637179009CF014 /* NSArray+NWY.h in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2471E637179009CF014 /* NSArray+NWY.h */; };
+		E97ED24A1E6371BD009CF014 /* NSArray+NWY.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2491E6371BD009CF014 /* NSArray+NWY.m */; };
 		E98D8A071E60F6C500D5647F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A061E60F6C500D5647F /* main.m */; };
 		E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A091E60F6C500D5647F /* AppDelegate.m */; };
 		E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A0C1E60F6C500D5647F /* ViewController.m */; };
@@ -50,6 +53,10 @@
 		E97ED23E1E636A7B009CF014 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		E97ED2411E636CE3009CF014 /* NSNumber+NWY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NWY.h"; sourceTree = "<group>"; };
 		E97ED2421E636D6B009CF014 /* NSNumber+NWY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+NWY.m"; sourceTree = "<group>"; };
+		E97ED2441E637027009CF014 /* DatabaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseObject.h; sourceTree = "<group>"; };
+		E97ED2451E637027009CF014 /* DatabaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseObject.m; sourceTree = "<group>"; };
+		E97ED2471E637179009CF014 /* NSArray+NWY.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NWY.h"; sourceTree = "<group>"; };
+		E97ED2491E6371BD009CF014 /* NSArray+NWY.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+NWY.m"; sourceTree = "<group>"; };
 		E98D8A021E60F6C500D5647F /* norway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = norway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98D8A061E60F6C500D5647F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E98D8A081E60F6C500D5647F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -98,6 +105,8 @@
 			children = (
 				E97ED2411E636CE3009CF014 /* NSNumber+NWY.h */,
 				E97ED2421E636D6B009CF014 /* NSNumber+NWY.m */,
+				E97ED2471E637179009CF014 /* NSArray+NWY.h */,
+				E97ED2491E6371BD009CF014 /* NSArray+NWY.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -183,6 +192,8 @@
 				E97ED23B1E6366EE009CF014 /* Calories.m */,
 				E97ED23D1E636A7B009CF014 /* Location.h */,
 				E97ED23E1E636A7B009CF014 /* Location.m */,
+				E97ED2441E637027009CF014 /* DatabaseObject.h */,
+				E97ED2451E637027009CF014 /* DatabaseObject.m */,
 			);
 			name = Model/Database;
 			sourceTree = "<group>";
@@ -299,10 +310,13 @@
 				E97ED2331E6359EE009CF014 /* NorwayDatabase.m in Sources */,
 				E98D8A311E60FDD100D5647F /* SerializedDatabase.m in Sources */,
 				E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */,
+				E97ED2461E637027009CF014 /* DatabaseObject.m in Sources */,
 				E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */,
+				E97ED2481E637179009CF014 /* NSArray+NWY.h in Sources */,
 				E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */,
 				E97ED23C1E6366EE009CF014 /* Calories.m in Sources */,
 				E97ED23F1E636A7B009CF014 /* Location.m in Sources */,
+				E97ED24A1E6371BD009CF014 /* NSArray+NWY.m in Sources */,
 				E98D8A071E60F6C500D5647F /* main.m in Sources */,
 				E97ED2431E636D6B009CF014 /* NSNumber+NWY.m in Sources */,
 				E97ED2391E635C39009CF014 /* HeartRate.m in Sources */,

@@ -17,6 +17,11 @@
 
 @implementation NorwayDatabase
 
++ (NSString*)databasePath {
+    NSString * documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, NO)[0];
+    return [documents stringByAppendingString:@"documents.db"];
+}
+
 - (BOOL)_createSchemaIfNecessary {
     __block BOOL success = NO;
     [self.serialDB serialTransaction:^(sqlite3 *db) {

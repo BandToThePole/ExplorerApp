@@ -6,19 +6,14 @@
 //  Copyright © 2017 thomasdenney. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "DatabaseObject.h"
 
-#import "SerializedDatabase.h"
 #import "HeartRate.h"
 #import "Calories.h"
 #import "Location.h"
 
-@interface RecordingSession : NSObject
+@interface RecordingSession : DatabaseObject
 
-- (BOOL)save:(SerializedDatabase*)serialDB;
-
-// 0 if not yet saved
-@property NSInteger databaseID;
 @property NSDate * startDate;
 @property NSDate * endDate;
 

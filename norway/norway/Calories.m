@@ -37,4 +37,8 @@
     return success;
 }
 
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+    return @{ @"time": [formatter stringFromDate:self.time], @"total_calories_since_start": @(self.kcalCount) };
+}
+
 @end

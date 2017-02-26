@@ -13,6 +13,8 @@
 
 @interface NorwayDatabase : NSObject
 
++ (NSString*)databasePath;
+
 // Creates tables on creation
 - (instancetype)initWithSerialDatabase:(SerializedDatabase*)serialDB;
 

@@ -7,20 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SerializedDatabase.h"
+
+#import "DatabaseObject.h"
 
 @class RecordingSession;
 
-@interface HeartRate : NSObject
+@interface HeartRate : DatabaseObject
 
 - (instancetype)initWithTime:(NSDate*)time bpm:(NSUInteger)bpm;
 
-@property NSInteger databaseID;
 @property NSInteger heartRate;
 @property (weak) RecordingSession * session;
 @property NSDate * time;
 @property NSUInteger bpm;
-
-- (BOOL)save:(SerializedDatabase*)serialDB;
 
 @end

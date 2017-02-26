@@ -13,6 +13,7 @@
 #import "Calories.h"
 #import "Location.h"
 #import "NSNumber+NWY.h"
+#import "NSArray+NWY.h"
 
 @interface NorwayTests : XCTestCase
 
@@ -93,6 +94,19 @@
     XCTAssert([[NSNumber numberWithFloat:42] nwy_isFloatingPoint]);
     XCTAssert([[NSNumber numberWithInteger:42] nwy_isInteger]);
     XCTAssert([[NSNumber numberWithInt:42] nwy_isInteger]);
+}
+
+- (void)testMapping {
+    NSArray * original = @[@(0), @(1), @(2), @(3)];
+    NSArray * doubled = [original nwy_map:^id(id x) {
+        return @([x integerValue] * 2);
+    }];
+    
+    XCTAssertEqual(original.count, doubled.count);
+    
+    for (NSInteger i = 0; i < original.count; i++) {
+        XCTAssertEqual([original[i] integerValue] * 2, [doubled[i] integerValue]);
+    }
 }
 
 @end

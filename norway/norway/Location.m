@@ -38,4 +38,8 @@
     return success;
 }
 
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+    return @{ @"time": [formatter stringFromDate:self.time], @"lat": @(self.latitude), @"long": @(self.longitude) };
+}
+
 @end

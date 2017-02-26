@@ -8,6 +8,7 @@
 
 #import "RecordingSession.h"
 #import "Query.h"
+#import "NSArray+NWY.h"
 
 @interface RecordingSession ()
 
@@ -79,6 +80,21 @@
 
 - (NSArray<Location*>*)locations {
     return self.locationsMutable;
+}
+
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+    return @{ @"start": [formatter stringFromDate:self.startDate],
+              @"end": [formatter stringFromDate:self.endDate],
+              // This would be much nicer in Swift (laughing crying face emoji)
+              @"locations": [self.locations nwy_map:^id(id x) {
+                  return [x serializedDictionaryWithFormatter:formatter];
+              }],
+              @"heart_rate": [self.heartData nwy_map:^id(id x) {
+                  return [x serializedDictionaryWithFormatter:formatter];
+              }],
+              @"calories": [self.calories nwy_map:^id(id x) {
+                  return [x serializedDictionaryWithFormatter:formatter];
+              }] };
 }
 
 @end

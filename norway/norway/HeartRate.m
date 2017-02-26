@@ -42,4 +42,8 @@
     return success;
 }
 
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter {
+    return @{ @"time": [formatter stringFromDate:self.time], @"bpm": @(self.bpm) };
+}
+
 @end
