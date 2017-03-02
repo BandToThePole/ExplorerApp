@@ -114,21 +114,21 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
     return self.distancesMutable;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter sinceDate:(NSDate *)date {
     return @{ @"start": [formatter stringFromDate:self.startDate],
               @"end": [formatter stringFromDate:self.endDate],
               // This would be much nicer in Swift (laughing crying face emoji)
               @"locations": [[self coalesce:self.locations] nwy_map:^id(id x) {
-                  return [x serializedDictionaryWithFormatter:formatter];
+                  return [x serializedDictionaryWithFormatter:formatter sinceDate:date];
               }],
               @"heart_rate": [[self coalesce:self.heartData] nwy_map:^id(id x) {
-                  return [x serializedDictionaryWithFormatter:formatter];
+                  return [x serializedDictionaryWithFormatter:formatter sinceDate:date];
               }],
               @"calories": [[self coalesce:self.calories] nwy_map:^id(id x) {
-                  return [x serializedDictionaryWithFormatter:formatter];
+                  return [x serializedDictionaryWithFormatter:formatter sinceDate:date];
               }],
               @"distances": [[self coalesce:self.distances] nwy_map:^id(id x) {
-                  return [x serializedDictionaryWithFormatter:formatter];
+                  return [x serializedDictionaryWithFormatter:formatter sinceDate:date];
               }]
             };
 }

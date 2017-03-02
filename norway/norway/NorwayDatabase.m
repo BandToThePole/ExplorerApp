@@ -81,7 +81,7 @@
 - (NSDictionary*)serializeSessions:(NSArray<RecordingSession *> *)sessions {
     NSISO8601DateFormatter * df = [NSISO8601DateFormatter new];
     return @{ @"recording_sessions": [sessions nwy_map:^id(id x) {
-        return [x serializedDictionaryWithFormatter:df];
+        return [x serializedDictionaryWithFormatter:df sinceDate:[x startDate]];
     }] };
 }
 

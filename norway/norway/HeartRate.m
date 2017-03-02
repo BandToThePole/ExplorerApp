@@ -50,8 +50,8 @@
     return success;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
-    return @{ @"time": [formatter stringFromDate:self.time], @"bpm": @(self.bpm) };
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter sinceDate:(NSDate *)date {
+    return @{ @"dt": @((NSInteger)round([self.time timeIntervalSinceDate:date])), @"bpm": @(self.bpm) };
 }
 
 - (NSString*)stringValue {
