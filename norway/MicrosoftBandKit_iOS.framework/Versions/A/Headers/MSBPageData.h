@@ -17,7 +17,7 @@
 
  @param pageId       A unique identifier for the page.
  @param layoutIndex  The index of the page layout.
- @param value        An array of MSBPageElementValues to update.
+ @param values       An array of MSBPageElementValues to update.
  
  @return An instance of MSBPageInfo.
  */

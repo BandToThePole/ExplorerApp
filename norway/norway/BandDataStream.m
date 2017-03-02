@@ -34,7 +34,6 @@
     [self.client.sensorManager startHeartRateUpdatesToQueue:self.streamQueue errorRef:nil withHandler:^(MSBSensorHeartRateData *heartRateData, NSError *error) {
         HeartRate * hr = [[HeartRate alloc] initWithTime:[NSDate date] bpm:heartRateData.heartRate];
         [self.session addHeartRate:hr];
-        NSLog(@"%lu BPM", hr.bpm);
         [hr save:self.database];
     }];
 }
@@ -43,7 +42,6 @@
     [self.client.sensorManager startCaloriesUpdatesToQueue:self.streamQueue errorRef:nil withHandler:^(MSBSensorCaloriesData *caloriesData, NSError *error) {
         Calories * kcal = [[Calories alloc] initWithTime:[NSDate date] totalCalories:caloriesData.calories];
         [self.session addCalories:kcal];
-        NSLog(@"%lu kcal", kcal.kcalCount);
         [kcal save:self.database];
     }];
 }
@@ -72,7 +70,6 @@
         
         Distance * distance = [[Distance alloc] initWithTime:[NSDate date] distance:distanceData.totalDistance speed:distanceData.speed pace:distanceData.pace motionType:motion];
         [self.session addDistance:distance];
-        NSLog(@"%lu km?", distance.totalDistance);
         [distance save:self.database];
     }];
 }
@@ -80,7 +77,6 @@
 - (void)begin {
     [self.session start];
     [self.session save:self.database];
-    NSLog(@"Saved self with %d", (int)self.session.databaseID);
     
     if ([self.client.sensorManager heartRateUserConsent] != MSBUserConsentGranted) {
         [self.client.sensorManager requestHRUserConsentWithCompletion:^(BOOL userConsent, NSError *error) {

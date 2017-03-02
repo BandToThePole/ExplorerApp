@@ -20,7 +20,6 @@
 		E97ED2531E638481009CF014 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97ED2521E638481009CF014 /* MessageUI.framework */; };
 		E98D8A071E60F6C500D5647F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A061E60F6C500D5647F /* main.m */; };
 		E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A091E60F6C500D5647F /* AppDelegate.m */; };
-		E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A0C1E60F6C500D5647F /* ViewController.m */; };
 		E98D8A101E60F6C500D5647F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98D8A0E1E60F6C500D5647F /* Main.storyboard */; };
 		E98D8A121E60F6C500D5647F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98D8A111E60F6C500D5647F /* Assets.xcassets */; };
 		E98D8A151E60F6C500D5647F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E98D8A131E60F6C500D5647F /* LaunchScreen.storyboard */; };
@@ -76,8 +75,6 @@
 		E98D8A061E60F6C500D5647F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E98D8A081E60F6C500D5647F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E98D8A091E60F6C500D5647F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E98D8A0B1E60F6C500D5647F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E98D8A0C1E60F6C500D5647F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E98D8A0F1E60F6C500D5647F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E98D8A111E60F6C500D5647F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E98D8A141E60F6C500D5647F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -182,8 +179,6 @@
 				E98D8A341E61024C00D5647F /* Model/Database */,
 				E98D8A081E60F6C500D5647F /* AppDelegate.h */,
 				E98D8A091E60F6C500D5647F /* AppDelegate.m */,
-				E98D8A0B1E60F6C500D5647F /* ViewController.h */,
-				E98D8A0C1E60F6C500D5647F /* ViewController.m */,
 				E98D8A0E1E60F6C500D5647F /* Main.storyboard */,
 				E98D8A111E60F6C500D5647F /* Assets.xcassets */,
 				E98D8A131E60F6C500D5647F /* LaunchScreen.storyboard */,
@@ -377,7 +372,6 @@
 			files = (
 				E97ED2331E6359EE009CF014 /* NorwayDatabase.m in Sources */,
 				E98D8A311E60FDD100D5647F /* SerializedDatabase.m in Sources */,
-				E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */,
 				E97ED2461E637027009CF014 /* DatabaseObject.m in Sources */,
 				E9F824791E6846D800AE2CCB /* StringTableViewController.m in Sources */,
 				E9F824641E680DF200AE2CCB /* Distance.m in Sources */,

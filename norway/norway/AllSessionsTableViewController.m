@@ -61,9 +61,6 @@
 
 - (void)reloadData {
     self.sessions = [self.database.allSessions sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"startDate" ascending:NO]]];
-    for (RecordingSession * session in self.sessions) {
-        NSLog(@"%d", (int)session.databaseID);
-    }
     [self.tableView reloadData];
 }
 

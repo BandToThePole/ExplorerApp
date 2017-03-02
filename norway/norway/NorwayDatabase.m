@@ -75,7 +75,6 @@
             [sessions addObject:session];
         }
     }];
-    NSLog(@"Queried sessions");
     return sessions;
 }
 

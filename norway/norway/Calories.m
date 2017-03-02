@@ -23,7 +23,6 @@
     if (self = [super initWithQuery:query]) {
         self.time = [query dateColumn:2];
         self.kcalCount = [query integerColumn:3];
-        NSLog(@"Instantiated query from database with %lu", self.kcalCount);
     }
     return self;
 }

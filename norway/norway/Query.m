@@ -73,7 +73,6 @@
 
 - (BOOL)execute {
     int result = sqlite3_step(_statement);
-//    NSLog(@"%s", sqlite3_errmsg(sqlite3_db))
     return result == SQLITE_ROW || result == SQLITE_DONE;
 }
 

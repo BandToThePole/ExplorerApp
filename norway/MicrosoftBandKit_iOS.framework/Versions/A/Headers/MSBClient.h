@@ -46,14 +46,12 @@
 /**
  Get the device firmware version asynchronously.
 
- @param completionHandler
  */
 - (void)firmwareVersionWithCompletionHandler:(void(^)(NSString *version, NSError *error))completionHandler;
 
 /**
  Get the device hardware version asynchronously.
 
- @param completionHandler
  */
 - (void)hardwareVersionWithCompletionHandler:(void(^)(NSString *version, NSError *error))completionHandler;
 @end

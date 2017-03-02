@@ -31,21 +31,18 @@ NSString * const ConnectionManagerDisconnectedBand = @"disconnectedBand";
 }
 
 - (void)clientManager:(MSBClientManager *)clientManager clientDidConnect:(MSBClient *)client {
-    NSLog(@"%@ connected", client);
     [[NSNotificationCenter defaultCenter] postNotificationName:ConnectionManagerConnectedBand object:client];
     [self.waitingClientsMutable removeObject:client];
     [self.connectedBands addObject:client];
 }
 
 - (void)clientManager:(MSBClientManager *)clientManager clientDidDisconnect:(MSBClient *)client {
-    NSLog(@"%@ disconnected", client);
     [[NSNotificationCenter defaultCenter] postNotificationName:ConnectionManagerDisconnectedBand object:client];
     [self.waitingClientsMutable removeObject:client];
     [self.connectedBands addObject:client];
 }
 
 - (void)clientManager:(MSBClientManager *)clientManager client:(MSBClient *)client didFailToConnectWithError:(NSError *)error {
-    NSLog(@"%@ failed to connect with error %@", client, error.localizedDescription);
     [self.waitingClientsMutable removeObject:client];
     [self.connectedBands removeObject:client];
 }
