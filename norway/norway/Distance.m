@@ -61,4 +61,8 @@
             };
 }
 
+- (NSString*)stringValue {
+    return [NSString stringWithFormat:@"%zu cm", self.totalDistance];
+}
+
 @end

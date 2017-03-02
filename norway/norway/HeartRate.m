@@ -54,4 +54,8 @@
     return @{ @"time": [formatter stringFromDate:self.time], @"bpm": @(self.bpm) };
 }
 
+- (NSString*)stringValue {
+    return [NSString stringWithFormat:@"%zu bpm", self.bpm];
+}
+
 @end

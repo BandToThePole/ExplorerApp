@@ -19,4 +19,6 @@
 - (BOOL)save:(SerializedDatabase*)serialDB;
 - (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter*)formatter;
 
+- (NSString*)stringValue;
+
 @end

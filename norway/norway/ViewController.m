@@ -27,9 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.connectionManager = [[ConnectionManager alloc] init];
+    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+  /*  self.connectionManager = appDelegate.connectionManager;
     self.connectionManager.delegate = self;
-    [self.connectionManager connectAny];
+    [self.connectionManager connectAny];*/
     self.statusLabel.text = @"Connecting";
     self.startButton.enabled = self.stopButton.enabled = NO;
     // Do any additional setup after loading the view, typically from a nib.

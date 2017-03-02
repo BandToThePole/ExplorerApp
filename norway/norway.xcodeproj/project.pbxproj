@@ -31,6 +31,13 @@
 		E98D8A331E61013200D5647F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E98D8A321E61013200D5647F /* libsqlite3.tbd */; };
 		E98D8A371E61025A00D5647F /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A361E61025A00D5647F /* Query.m */; };
 		E9F824641E680DF200AE2CCB /* Distance.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F824631E680DF200AE2CCB /* Distance.m */; };
+		E9F8246B1E682ECD00AE2CCB /* ConnectionManagerViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F8246A1E682ECD00AE2CCB /* ConnectionManagerViewControllerTableViewController.m */; };
+		E9F8246E1E683A7A00AE2CCB /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F8246D1E683A7A00AE2CCB /* HelpViewController.m */; };
+		E9F824701E683AAE00AE2CCB /* doc.html in Resources */ = {isa = PBXBuildFile; fileRef = E9F8246F1E683AAE00AE2CCB /* doc.html */; };
+		E9F824731E683BC800AE2CCB /* RecordSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F824721E683BC800AE2CCB /* RecordSessionViewController.m */; };
+		E9F824761E68432900AE2CCB /* AllSessionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F824751E68432900AE2CCB /* AllSessionsTableViewController.m */; };
+		E9F824791E6846D800AE2CCB /* StringTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F824781E6846D800AE2CCB /* StringTableViewController.m */; };
+		E9F8247C1E685FEB00AE2CCB /* ExportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F8247B1E685FEB00AE2CCB /* ExportTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +94,19 @@
 		E98D8A361E61025A00D5647F /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
 		E9F824621E680DF200AE2CCB /* Distance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Distance.h; sourceTree = "<group>"; };
 		E9F824631E680DF200AE2CCB /* Distance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Distance.m; sourceTree = "<group>"; };
+		E9F824691E682ECD00AE2CCB /* ConnectionManagerViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManagerViewControllerTableViewController.h; sourceTree = "<group>"; };
+		E9F8246A1E682ECD00AE2CCB /* ConnectionManagerViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManagerViewControllerTableViewController.m; sourceTree = "<group>"; };
+		E9F8246C1E683A7A00AE2CCB /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		E9F8246D1E683A7A00AE2CCB /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		E9F8246F1E683AAE00AE2CCB /* doc.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = doc.html; sourceTree = "<group>"; };
+		E9F824711E683BC800AE2CCB /* RecordSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordSessionViewController.h; sourceTree = "<group>"; };
+		E9F824721E683BC800AE2CCB /* RecordSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordSessionViewController.m; sourceTree = "<group>"; };
+		E9F824741E68432900AE2CCB /* AllSessionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllSessionsTableViewController.h; sourceTree = "<group>"; };
+		E9F824751E68432900AE2CCB /* AllSessionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllSessionsTableViewController.m; sourceTree = "<group>"; };
+		E9F824771E6846D800AE2CCB /* StringTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringTableViewController.h; sourceTree = "<group>"; };
+		E9F824781E6846D800AE2CCB /* StringTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringTableViewController.m; sourceTree = "<group>"; };
+		E9F8247A1E685FEB00AE2CCB /* ExportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportTableViewController.h; sourceTree = "<group>"; };
+		E9F8247B1E685FEB00AE2CCB /* ExportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +176,7 @@
 		E98D8A041E60F6C500D5647F /* norway */ = {
 			isa = PBXGroup;
 			children = (
+				E9F824681E682EBC00AE2CCB /* View Controllers */,
 				E97ED24B1E637640009CF014 /* Band Controller */,
 				E97ED2401E636CC5009CF014 /* Utilities */,
 				E98D8A341E61024C00D5647F /* Model/Database */,
@@ -176,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				E98D8A061E60F6C500D5647F /* main.m */,
+				E9F8246F1E683AAE00AE2CCB /* doc.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -222,6 +244,25 @@
 				E9F824631E680DF200AE2CCB /* Distance.m */,
 			);
 			name = Model/Database;
+			sourceTree = "<group>";
+		};
+		E9F824681E682EBC00AE2CCB /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E9F824691E682ECD00AE2CCB /* ConnectionManagerViewControllerTableViewController.h */,
+				E9F8246A1E682ECD00AE2CCB /* ConnectionManagerViewControllerTableViewController.m */,
+				E9F8246C1E683A7A00AE2CCB /* HelpViewController.h */,
+				E9F8246D1E683A7A00AE2CCB /* HelpViewController.m */,
+				E9F824711E683BC800AE2CCB /* RecordSessionViewController.h */,
+				E9F824721E683BC800AE2CCB /* RecordSessionViewController.m */,
+				E9F824741E68432900AE2CCB /* AllSessionsTableViewController.h */,
+				E9F824751E68432900AE2CCB /* AllSessionsTableViewController.m */,
+				E9F824771E6846D800AE2CCB /* StringTableViewController.h */,
+				E9F824781E6846D800AE2CCB /* StringTableViewController.m */,
+				E9F8247A1E685FEB00AE2CCB /* ExportTableViewController.h */,
+				E9F8247B1E685FEB00AE2CCB /* ExportTableViewController.m */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E98D8A151E60F6C500D5647F /* LaunchScreen.storyboard in Resources */,
+				E9F824701E683AAE00AE2CCB /* doc.html in Resources */,
 				E98D8A121E60F6C500D5647F /* Assets.xcassets in Resources */,
 				E98D8A101E60F6C500D5647F /* Main.storyboard in Resources */,
 			);
@@ -337,9 +379,11 @@
 				E98D8A311E60FDD100D5647F /* SerializedDatabase.m in Sources */,
 				E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */,
 				E97ED2461E637027009CF014 /* DatabaseObject.m in Sources */,
+				E9F824791E6846D800AE2CCB /* StringTableViewController.m in Sources */,
 				E9F824641E680DF200AE2CCB /* Distance.m in Sources */,
 				E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */,
 				E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */,
+				E9F8246E1E683A7A00AE2CCB /* HelpViewController.m in Sources */,
 				E97ED23C1E6366EE009CF014 /* Calories.m in Sources */,
 				E97ED23F1E636A7B009CF014 /* Location.m in Sources */,
 				E97ED24A1E6371BD009CF014 /* NSArray+NWY.m in Sources */,
@@ -347,6 +391,10 @@
 				E97ED2431E636D6B009CF014 /* NSNumber+NWY.m in Sources */,
 				E97ED24E1E637656009CF014 /* ConnectionManager.m in Sources */,
 				E97ED2391E635C39009CF014 /* HeartRate.m in Sources */,
+				E9F824731E683BC800AE2CCB /* RecordSessionViewController.m in Sources */,
+				E9F824761E68432900AE2CCB /* AllSessionsTableViewController.m in Sources */,
+				E9F8246B1E682ECD00AE2CCB /* ConnectionManagerViewControllerTableViewController.m in Sources */,
+				E9F8247C1E685FEB00AE2CCB /* ExportTableViewController.m in Sources */,
 				E97ED2511E637A95009CF014 /* BandDataStream.m in Sources */,
 				E98D8A371E61025A00D5647F /* Query.m in Sources */,
 			);

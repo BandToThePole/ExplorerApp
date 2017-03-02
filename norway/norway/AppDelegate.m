@@ -19,6 +19,8 @@
     // Override point for customization after application launch.
     SerializedDatabase * serialDB = [[SerializedDatabase alloc] initWithPath:[NorwayDatabase databasePath] readOnly:NO error:nil];
     self.database = [[NorwayDatabase alloc] initWithSerialDatabase:serialDB];
+    self.connectionManager = [[ConnectionManager alloc] init];
+    [self.connectionManager connectDefault];
     return YES;
 }
 

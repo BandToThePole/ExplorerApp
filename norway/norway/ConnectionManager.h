@@ -11,16 +11,19 @@
 
 @class ConnectionManager;
 
-@protocol ConnectionManagerDelegate <NSObject>
-
-- (void)connectionManager:(ConnectionManager*)manager connectedBand:(MSBClient*)band;
-
-@end
+extern NSString * const ConnectionManagerConnectedBand;
+extern NSString * const ConnectionManagerDisconnectedBand;
 
 @interface ConnectionManager : NSObject<MSBClientManagerDelegate>
 
-- (void)connectAny;
+- (MSBClient*)connectedBand;
 
-@property id<ConnectionManagerDelegate> delegate;
+- (NSArray<MSBClient*>*)allBands;
+
+@property (nonatomic) NSString * defaultConnectionString;
+@property (readonly) NSSet<MSBClient*>* waitingClients;
+
+- (void)connectDefault;
+- (void)connect:(MSBClient*)client;
 
 @end

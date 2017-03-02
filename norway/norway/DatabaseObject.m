@@ -26,4 +26,8 @@
     return @{};
 }
 
+- (NSString*)stringValue {
+    return @"";
+}
+
 @end

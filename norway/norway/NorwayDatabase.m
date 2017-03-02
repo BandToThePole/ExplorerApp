@@ -29,7 +29,7 @@
         success = [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS sessions (sessionid INTEGER PRIMARY KEY AUTOINCREMENT, start REAL, end REAL)", nil] execute];
         success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS locations (locationid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, lat REAL, long REAL, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
         success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS heartrates (heartrateid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, bpm INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
-        success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS calories (calorieid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, count INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
+        success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS calories (calorieid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, kcalcount INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
         success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS distances (distanceid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, distance INTEGER, speed REAL, pace REAL, motion TEXT, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
     }];
     return success;
@@ -64,7 +64,7 @@
             
             Query * calories = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM calories WHERE session = ?", @(session.databaseID), nil];
             while ([calories next]) {
-                [session addCalories:[[Calories alloc] initWithQuery:locations]];
+                [session addCalories:[[Calories alloc] initWithQuery:calories]];
             }
             
             Query * distances = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM distances WHERE session = ?", @(session.databaseID), nil];
@@ -75,6 +75,7 @@
             [sessions addObject:session];
         }
     }];
+    NSLog(@"Queried sessions");
     return sessions;
 }
 

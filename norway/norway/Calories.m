@@ -23,6 +23,7 @@
     if (self = [super initWithQuery:query]) {
         self.time = [query dateColumn:2];
         self.kcalCount = [query integerColumn:3];
+        NSLog(@"Instantiated query from database with %lu", self.kcalCount);
     }
     return self;
 }
@@ -31,14 +32,14 @@
     __block BOOL success = NO;
     [database serialTransaction:^(sqlite3 *db) {
         if (self.databaseID == 0) {
-            Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO calories(time,session,count) VALUES(?,?,?)", self.time, @(self.session.databaseID), @(self.kcalCount), nil];
+            Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO calories(time,session,kcalcount) VALUES(?,?,?)", self.time, @(self.session.databaseID), @(self.kcalCount), nil];
             success = [query execute];
             if (success) {
                 self.databaseID = database.lastInsertID;
             }
         }
         else {
-            Query * query = [[Query alloc] initWithDatabase:db string:@"UPDATE calories SET time=?, session=?, count=? WHERE calorieid = ?", self.time, @(self.session.databaseID), @(self.kcalCount), @(self.databaseID), nil];
+            Query * query = [[Query alloc] initWithDatabase:db string:@"UPDATE calories SET time=?, session=?, kcalcount=? WHERE calorieid = ?", self.time, @(self.session.databaseID), @(self.kcalCount), @(self.databaseID), nil];
             success = [query execute];
         }
     }];
@@ -47,6 +48,10 @@
 
 - (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
     return @{ @"time": [formatter stringFromDate:self.time], @"total_calories_since_start": @(self.kcalCount) };
+}
+
+- (NSString*)stringValue {
+    return [NSString stringWithFormat:@"%lu kcal", self.kcalCount];
 }
 
 @end

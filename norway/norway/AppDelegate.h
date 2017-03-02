@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "NorwayDatabase.h"
+#import "ConnectionManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property NorwayDatabase * database;
+@property ConnectionManager * connectionManager;
 
 @property (strong, nonatomic) UIWindow *window;
 

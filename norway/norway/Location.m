@@ -52,4 +52,8 @@
     return @{ @"time": [formatter stringFromDate:self.time], @"lat": @(self.latitude), @"long": @(self.longitude) };
 }
 
+- (NSString*)stringValue {
+    return [NSString stringWithFormat:@"%f,%f", self.latitude, self.longitude];
+}
+
 @end

@@ -13,6 +13,8 @@
 #import "Location.h"
 #import "Distance.h"
 
+extern NSString * const RecordingSessionChanged;
+
 @interface RecordingSession : DatabaseObject
 
 @property NSDate * startDate;

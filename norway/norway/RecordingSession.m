@@ -10,6 +10,8 @@
 #import "Query.h"
 #import "NSArray+NWY.h"
 
+NSString * const RecordingSessionChanged = @"recordingSessionChanged";
+
 @interface RecordingSession ()
 
 @property NSMutableArray<HeartRate*>* heartDataMutable;
@@ -51,7 +53,7 @@
     __block BOOL success = NO;
     [serialDB serialTransaction:^(sqlite3 *db) {
         if (self.databaseID == 0) {
-            Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO sessions(start, end) VALUES(?,?)", @(self.startDate.timeIntervalSinceReferenceDate), @(self.endDate.timeIntervalSinceReferenceDate), nil];
+            Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO sessions(start, end) VALUES(?,?)", self.startDate, self.endDate, nil];
             success = [query execute];
             if (success) {
                 self.databaseID = [serialDB lastInsertID];
@@ -67,10 +69,13 @@
 
 - (void)start {
     self.startDate = [NSDate date];
+    //TODO: Make more explicit with start/end
+    [[NSNotificationCenter defaultCenter] postNotificationName:RecordingSessionChanged object:self];
 }
 
 - (void)end {
     self.endDate = [NSDate date];
+    [[NSNotificationCenter defaultCenter] postNotificationName:RecordingSessionChanged object:self];
 }
 
 - (void)addHeartRate:(HeartRate *)heartRateDatum {

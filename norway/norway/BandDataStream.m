@@ -80,6 +80,7 @@
 - (void)begin {
     [self.session start];
     [self.session save:self.database];
+    NSLog(@"Saved self with %d", (int)self.session.databaseID);
     
     if ([self.client.sensorManager heartRateUserConsent] != MSBUserConsentGranted) {
         [self.client.sensorManager requestHRUserConsentWithCompletion:^(BOOL userConsent, NSError *error) {
