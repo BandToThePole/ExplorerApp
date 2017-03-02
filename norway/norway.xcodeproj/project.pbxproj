@@ -30,6 +30,7 @@
 		E98D8A311E60FDD100D5647F /* SerializedDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A301E60FDD100D5647F /* SerializedDatabase.m */; };
 		E98D8A331E61013200D5647F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E98D8A321E61013200D5647F /* libsqlite3.tbd */; };
 		E98D8A371E61025A00D5647F /* Query.m in Sources */ = {isa = PBXBuildFile; fileRef = E98D8A361E61025A00D5647F /* Query.m */; };
+		E9F824641E680DF200AE2CCB /* Distances.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F824631E680DF200AE2CCB /* Distances.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		E98D8A321E61013200D5647F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E98D8A351E61025A00D5647F /* Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Query.h; sourceTree = "<group>"; };
 		E98D8A361E61025A00D5647F /* Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Query.m; sourceTree = "<group>"; };
+		E9F824621E680DF200AE2CCB /* Distances.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Distances.h; sourceTree = "<group>"; };
+		E9F824631E680DF200AE2CCB /* Distances.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Distances.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +218,8 @@
 				E97ED23E1E636A7B009CF014 /* Location.m */,
 				E97ED2441E637027009CF014 /* DatabaseObject.h */,
 				E97ED2451E637027009CF014 /* DatabaseObject.m */,
+				E9F824621E680DF200AE2CCB /* Distances.h */,
+				E9F824631E680DF200AE2CCB /* Distances.m */,
 			);
 			name = Model/Database;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				E98D8A311E60FDD100D5647F /* SerializedDatabase.m in Sources */,
 				E98D8A0D1E60F6C500D5647F /* ViewController.m in Sources */,
 				E97ED2461E637027009CF014 /* DatabaseObject.m in Sources */,
+				E9F824641E680DF200AE2CCB /* Distances.m in Sources */,
 				E98D8A0A1E60F6C500D5647F /* AppDelegate.m in Sources */,
 				E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */,
 				E97ED23C1E6366EE009CF014 /* Calories.m in Sources */,

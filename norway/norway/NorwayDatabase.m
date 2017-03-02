@@ -30,6 +30,7 @@
         success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS locations (locationid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, lat REAL, long REAL, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
         success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS heartrates (heartrateid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, bpm INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
         success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS calories (calorieid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, count INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
+        success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS distances (distanceid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, distance INTEGER, speed REAL, pace REAL, motion TEXT, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
     }];
     return success;
 }
@@ -64,6 +65,11 @@
             Query * calories = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM calories WHERE session = ?", @(session.databaseID), nil];
             while ([calories next]) {
                 [session addCalories:[[Calories alloc] initWithQuery:locations]];
+            }
+            
+            Query * distances = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM distances WHERE session = ?", @(session.databaseID), nil];
+            while ([distances next]) {
+                [session addDistance:[[Distances alloc] initWithQuery:distances]];
             }
             
             [sessions addObject:session];

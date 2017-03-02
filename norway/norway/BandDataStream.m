@@ -48,6 +48,35 @@
     }];
 }
 
+- (void)_streamDistance {
+    [self.client.sensorManager startDistanceUpdatesToQueue:self.streamQueue errorRef:nil withHandler:^(MSBSensorDistanceData *distanceData, NSError *error) {
+        
+        NSString * motion = @"";
+        switch (distanceData.motionType) {
+            case MSBSensorMotionTypeUnknown:
+                motion = @"";
+                break;
+            case MSBSensorMotionTypeIdle:
+                motion = @"idle";
+                break;
+            case MSBSensorMotionTypeWalking:
+                motion = @"walk";
+                break;
+            case MSBSensorMotionTypeJogging:
+                motion = @"jogging";
+                break;
+            case MSBSensorMotionTypeRunning:
+                motion = @"running";
+                break;
+        }
+        
+        Distances * distance = [[Distances alloc] initWithTime:[NSDate date] distance:distanceData.totalDistance speed:distanceData.speed pace:distanceData.pace motionType:motion];
+        [self.session addDistance:distance];
+        NSLog(@"%lu km?", distance.totalDistance);
+        [distance save:self.database];
+    }];
+}
+
 - (void)begin {
     [self.session start];
     [self.session save:self.database];
@@ -64,11 +93,13 @@
     }
     
     [self _streamCalories];
+    [self _streamDistance];
 }
 
 - (void)end {
     [self.client.sensorManager stopHeartRateUpdatesErrorRef:nil];
     [self.client.sensorManager stopCaloriesUpdatesErrorRef:nil];
+    [self.client.sensorManager stopDistanceUpdatesErrorRef:nil];
     
     [self.session end];
     [self.session save:self.database];

@@ -11,6 +11,7 @@
 #import "HeartRate.h"
 #import "Calories.h"
 #import "Location.h"
+#import "Distances.h"
 
 @interface RecordingSession : DatabaseObject
 
@@ -22,11 +23,13 @@
 - (void)addHeartRate:(HeartRate*)heartRateDatum;
 - (void)addCalories:(Calories*)caloriesDatum;
 - (void)addLocation:(Location*)locationDatum;
+- (void)addDistance:(Distances*)distance;
 
 - (void)end;
 
 @property (readonly) NSArray<HeartRate*>* heartData;
 @property (readonly) NSArray<Calories*>* calories;
 @property (readonly) NSArray<Location*>* locations;
+@property (readonly) NSArray<Distances*>* distances;
 
 @end

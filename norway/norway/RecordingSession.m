@@ -15,6 +15,7 @@
 @property NSMutableArray<HeartRate*>* heartDataMutable;
 @property NSMutableArray<Calories*>* caloriesMutable;
 @property NSMutableArray<Location*>* locationsMutable;
+@property NSMutableArray<Distances*>* distancesMutable;
 
 @end
 
@@ -25,6 +26,7 @@
         self.heartDataMutable = [NSMutableArray new];
         self.caloriesMutable = [NSMutableArray new];
         self.locationsMutable = [NSMutableArray new];
+        self.distancesMutable = [NSMutableArray new];
         
         self.startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
         self.endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
@@ -37,6 +39,7 @@
         self.heartDataMutable = [NSMutableArray new];
         self.caloriesMutable = [NSMutableArray new];
         self.locationsMutable = [NSMutableArray new];
+        self.distancesMutable = [NSMutableArray new];
         
         self.startDate = [query dateColumn:2];
         self.endDate = [query dateColumn:3];
@@ -85,6 +88,11 @@
     [self.locationsMutable addObject:locationDatum];
 }
 
+- (void)addDistance:(Distances *)distance {
+    distance.session = self;
+    [self.distancesMutable addObject:distance];
+}
+
 - (NSArray<HeartRate*>*)heartData {
     return self.heartDataMutable;
 }
@@ -95,6 +103,10 @@
 
 - (NSArray<Location*>*)locations {
     return self.locationsMutable;
+}
+
+- (NSArray<Distances*>*)distances {
+    return self.distancesMutable;
 }
 
 - (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter {
@@ -109,7 +121,11 @@
               }],
               @"calories": [self.calories nwy_map:^id(id x) {
                   return [x serializedDictionaryWithFormatter:formatter];
-              }] };
+              }],
+              @"distances": [self.distances nwy_map:^id(id x) {
+                  return [x serializedDictionaryWithFormatter:formatter];
+              }]
+            };
 }
 
 @end

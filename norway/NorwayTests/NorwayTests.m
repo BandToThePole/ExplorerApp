@@ -12,6 +12,7 @@
 #import "HeartRate.h"
 #import "Calories.h"
 #import "Location.h"
+#import "Distances.h"
 #import "NSNumber+NWY.h"
 #import "NSArray+NWY.h"
 
@@ -52,6 +53,7 @@
         XCTAssert([tableNames containsObject:@"locations"]);
         XCTAssert([tableNames containsObject:@"heartrates"]);
         XCTAssert([tableNames containsObject:@"calories"]);
+        XCTAssert([tableNames containsObject:@"distances"]);
     }];
     
     RecordingSession * session = [[RecordingSession alloc] init];
@@ -81,6 +83,12 @@
         Location * loc = [[Location alloc] initWithTime:heartRateDate lat:0 long:0];
         XCTAssertNotNil([loc serializedDictionaryWithFormatter:df]);
         [session addLocation:loc];
+        XCTAssert([loc save:serialDB]);
+        XCTAssert([loc save:serialDB]);
+        
+        Distances * distance = [[Distances alloc] initWithTime:heartRateDate distance:i speed:0 pace:0 motionType:@"running"];
+        XCTAssertNotNil(distance);
+        [session addDistance:distance];
         XCTAssert([loc save:serialDB]);
         XCTAssert([loc save:serialDB]);
         
