@@ -58,4 +58,9 @@
     return [NSString stringWithFormat:@"%zu bpm", self.bpm];
 }
 
+- (BOOL)canCoalesceWith:(DatabaseObject *)other {
+    HeartRate * hr = (HeartRate*)other;
+    return [other isKindOfClass:[self class]] && hr.bpm == self.bpm;
+}
+
 @end

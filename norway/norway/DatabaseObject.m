@@ -30,4 +30,8 @@
     return @"";
 }
 
+- (BOOL)canCoalesceWith:(DatabaseObject *)other {
+    return NO;
+}
+
 @end

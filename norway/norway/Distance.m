@@ -65,4 +65,9 @@
     return [NSString stringWithFormat:@"%zu cm", self.totalDistance];
 }
 
+- (BOOL)canCoalesceWith:(DatabaseObject *)other {
+    Distance * otherDist = (Distance*)other;
+    return [other isKindOfClass:[self class]] && self.totalDistance == otherDist.totalDistance && self.speed == otherDist.speed && self.pace == otherDist.pace && [self.motionType isEqualToString:otherDist.motionType];
+}
+
 @end

@@ -56,4 +56,9 @@
     return [NSString stringWithFormat:@"%f,%f", self.latitude, self.longitude];
 }
 
+- (BOOL)canCoalesceWith:(DatabaseObject *)other {
+    Location * otherLoc = (Location*)other;
+    return [other isKindOfClass:[self class]] && otherLoc.latitude == self.latitude && otherLoc.longitude == self.longitude;
+}
+
 @end

@@ -118,19 +118,29 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
     return @{ @"start": [formatter stringFromDate:self.startDate],
               @"end": [formatter stringFromDate:self.endDate],
               // This would be much nicer in Swift (laughing crying face emoji)
-              @"locations": [self.locations nwy_map:^id(id x) {
+              @"locations": [[self coalesce:self.locations] nwy_map:^id(id x) {
                   return [x serializedDictionaryWithFormatter:formatter];
               }],
-              @"heart_rate": [self.heartData nwy_map:^id(id x) {
+              @"heart_rate": [[self coalesce:self.heartData] nwy_map:^id(id x) {
                   return [x serializedDictionaryWithFormatter:formatter];
               }],
-              @"calories": [self.calories nwy_map:^id(id x) {
+              @"calories": [[self coalesce:self.calories] nwy_map:^id(id x) {
                   return [x serializedDictionaryWithFormatter:formatter];
               }],
-              @"distances": [self.distances nwy_map:^id(id x) {
+              @"distances": [[self coalesce:self.distances] nwy_map:^id(id x) {
                   return [x serializedDictionaryWithFormatter:formatter];
               }]
             };
+}
+
+- (NSArray<DatabaseObject*>*)coalesce:(NSArray<DatabaseObject*>*)objects {
+    NSMutableArray<DatabaseObject*> * newArray = [NSMutableArray new];
+    for (DatabaseObject * object in objects) {
+        if (newArray.count == 0 || ![[newArray lastObject] canCoalesceWith:object]) {
+            [newArray addObject:object];
+        }
+    }
+    return newArray;
 }
 
 @end

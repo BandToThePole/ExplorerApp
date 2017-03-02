@@ -21,4 +21,9 @@
 
 - (NSString*)stringValue;
 
+/**
+ * Should be implemented by subclasses (Objective-C has a *very* weak type system compared to Scala so I can't force the `other` parameter to be of the same type as the subtype - I do abuse the very weak type system in other places though)
+ */
+- (BOOL)canCoalesceWith:(DatabaseObject*)other;
+
 @end

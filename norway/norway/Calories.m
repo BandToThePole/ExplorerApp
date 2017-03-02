@@ -53,4 +53,9 @@
     return [NSString stringWithFormat:@"%lu kcal", self.kcalCount];
 }
 
+- (BOOL)canCoalesceWith:(DatabaseObject *)other {
+    Calories * otherCal = (Calories*)other;
+    return [other isKindOfClass:[self class]] && otherCal.kcalCount == self.kcalCount;
+}
+
 @end
