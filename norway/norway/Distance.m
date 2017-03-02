@@ -6,10 +6,10 @@
 //  Copyright © 2017 thomasdenney. All rights reserved.
 //
 
-#import "Distances.h"
+#import "Distance.h"
 #import "RecordingSession.h"
 
-@implementation Distances
+@implementation Distance
 
 - (instancetype)initWithTime:(NSDate *)date distance:(NSUInteger)distance speed:(double)speed pace:(double)pace motionType:(NSString*)motionType {
     if (self = [super init]) {

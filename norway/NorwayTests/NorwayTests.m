@@ -12,7 +12,7 @@
 #import "HeartRate.h"
 #import "Calories.h"
 #import "Location.h"
-#import "Distances.h"
+#import "Distance.h"
 #import "NSNumber+NWY.h"
 #import "NSArray+NWY.h"
 
@@ -86,7 +86,7 @@
         XCTAssert([loc save:serialDB]);
         XCTAssert([loc save:serialDB]);
         
-        Distances * distance = [[Distances alloc] initWithTime:heartRateDate distance:i speed:0 pace:0 motionType:@"running"];
+        Distance * distance = [[Distance alloc] initWithTime:heartRateDate distance:i speed:0 pace:0 motionType:@"running"];
         XCTAssertNotNil(distance);
         [session addDistance:distance];
         XCTAssert([loc save:serialDB]);

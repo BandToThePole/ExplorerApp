@@ -69,7 +69,7 @@
             
             Query * distances = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM distances WHERE session = ?", @(session.databaseID), nil];
             while ([distances next]) {
-                [session addDistance:[[Distances alloc] initWithQuery:distances]];
+                [session addDistance:[[Distance alloc] initWithQuery:distances]];
             }
             
             [sessions addObject:session];

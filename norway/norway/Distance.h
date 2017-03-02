@@ -10,7 +10,7 @@
 
 @class RecordingSession;
 
-@interface Distances : DatabaseObject
+@interface Distance : DatabaseObject
 
 - (instancetype)initWithTime:(NSDate *)date distance:(NSUInteger)distance speed:(double)speed pace:(double)pace motionType:(NSString*)motionType;
 

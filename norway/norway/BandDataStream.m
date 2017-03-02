@@ -70,7 +70,7 @@
                 break;
         }
         
-        Distances * distance = [[Distances alloc] initWithTime:[NSDate date] distance:distanceData.totalDistance speed:distanceData.speed pace:distanceData.pace motionType:motion];
+        Distance * distance = [[Distance alloc] initWithTime:[NSDate date] distance:distanceData.totalDistance speed:distanceData.speed pace:distanceData.pace motionType:motion];
         [self.session addDistance:distance];
         NSLog(@"%lu km?", distance.totalDistance);
         [distance save:self.database];

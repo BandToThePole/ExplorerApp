@@ -15,7 +15,7 @@
 @property NSMutableArray<HeartRate*>* heartDataMutable;
 @property NSMutableArray<Calories*>* caloriesMutable;
 @property NSMutableArray<Location*>* locationsMutable;
-@property NSMutableArray<Distances*>* distancesMutable;
+@property NSMutableArray<Distance*>* distancesMutable;
 
 @end
 
@@ -88,7 +88,7 @@
     [self.locationsMutable addObject:locationDatum];
 }
 
-- (void)addDistance:(Distances *)distance {
+- (void)addDistance:(Distance*)distance {
     distance.session = self;
     [self.distancesMutable addObject:distance];
 }
@@ -105,7 +105,7 @@
     return self.locationsMutable;
 }
 
-- (NSArray<Distances*>*)distances {
+- (NSArray<Distance*>*)distances {
     return self.distancesMutable;
 }
 
