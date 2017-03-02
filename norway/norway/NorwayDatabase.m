@@ -9,6 +9,8 @@
 #import "NorwayDatabase.h"
 #import "NSArray+NWY.h"
 
+#import <compression.h>
+
 @interface NorwayDatabase ()
 
 // Non-read only private version
@@ -78,11 +80,29 @@
     return sessions;
 }
 
-- (NSDictionary*)serializeSessions:(NSArray<RecordingSession *> *)sessions {
++ (NSDictionary*)serializeSessions:(NSArray<RecordingSession *> *)sessions {
     NSISO8601DateFormatter * df = [NSISO8601DateFormatter new];
     return @{ @"recording_sessions": [sessions nwy_map:^id(id x) {
         return [x serializedDictionaryWithFormatter:df sinceDate:[x startDate]];
     }] };
+}
+
++ (NSData*)encodeDictionary:(NSDictionary *)dict zlibCompress:(BOOL)compress {
+    NSData * data = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
+    
+    if (compress) {
+        // I don't actually know how big this out to be
+        size_t dstBufferLen = data.length * 2;
+        uint8_t * dstBuffer = calloc(dstBufferLen, sizeof(uint8_t));
+        dstBufferLen = compression_encode_buffer(dstBuffer, dstBufferLen, data.bytes, data.length, NULL, COMPRESSION_ZLIB);
+        if (dstBufferLen > 0) {
+            // This method copies the
+            data = [NSData dataWithBytes:dstBuffer length:dstBufferLen];
+        }
+        free(dstBuffer);
+    }
+    
+    return data;
 }
 
 @end

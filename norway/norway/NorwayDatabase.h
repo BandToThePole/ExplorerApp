@@ -22,6 +22,8 @@
 
 - (NSArray<RecordingSession*>*)allSessions;
 
-- (NSDictionary*)serializeSessions:(NSArray<RecordingSession*>*)sessions;
++ (NSDictionary*)serializeSessions:(NSArray<RecordingSession*>*)sessions;
+
++ (NSData*)encodeDictionary:(NSDictionary*)dict zlibCompress:(BOOL)compress;
 
 @end

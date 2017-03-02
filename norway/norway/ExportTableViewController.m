@@ -39,12 +39,10 @@
         
         AppDelegate * ad = (AppDelegate*)[UIApplication sharedApplication].delegate;
         NSArray * array = [ad.database allSessions];
-        NSDictionary * dict = [ad.database serializeSessions:array];
-        
-        // TODO: Don't actually pretty print...
-        NSData * databaseData = [NSJSONSerialization dataWithJSONObject:dict options:0/*NSJSONWritingPrettyPrinted*/ error:nil];
+        NSDictionary * dict = [NorwayDatabase serializeSessions:array];
+        NSData * databaseData = [NorwayDatabase encodeDictionary:dict zlibCompress:YES];
         //NSLog(@"JSON: %@", [[NSString alloc]  initWithData:databaseData encoding:NSUTF8StringEncoding]);
-        [vc addAttachmentData:databaseData mimeType:@"application/json" fileName:@"alldata.json"];
+        [vc addAttachmentData:databaseData mimeType:@"application/json" fileName:@"alldata.json.zlib"];
         [vc setMessageBody:[NSString stringWithFormat:@"Total size is %zu bytes", databaseData.length] isHTML:NO];
         [self presentViewController:vc animated:YES completion:nil];
     }

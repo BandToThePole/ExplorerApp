@@ -37,6 +37,7 @@
 		E9F824761E68432900AE2CCB /* AllSessionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F824751E68432900AE2CCB /* AllSessionsTableViewController.m */; };
 		E9F824791E6846D800AE2CCB /* StringTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F824781E6846D800AE2CCB /* StringTableViewController.m */; };
 		E9F8247C1E685FEB00AE2CCB /* ExportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F8247B1E685FEB00AE2CCB /* ExportTableViewController.m */; };
+		E9F8247E1E6893B400AE2CCB /* libcompression.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F8247D1E6893B400AE2CCB /* libcompression.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		E9F824781E6846D800AE2CCB /* StringTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringTableViewController.m; sourceTree = "<group>"; };
 		E9F8247A1E685FEB00AE2CCB /* ExportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportTableViewController.h; sourceTree = "<group>"; };
 		E9F8247B1E685FEB00AE2CCB /* ExportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportTableViewController.m; sourceTree = "<group>"; };
+		E9F8247D1E6893B400AE2CCB /* libcompression.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcompression.tbd; path = usr/lib/libcompression.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9F8247E1E6893B400AE2CCB /* libcompression.tbd in Frameworks */,
 				E97ED2531E638481009CF014 /* MessageUI.framework in Frameworks */,
 				E98D8A331E61013200D5647F /* libsqlite3.tbd in Frameworks */,
 				E98D8A201E60F7AA00D5647F /* CoreBluetooth.framework in Frameworks */,
@@ -200,6 +203,7 @@
 		E98D8A1E1E60F7AA00D5647F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9F8247D1E6893B400AE2CCB /* libcompression.tbd */,
 				E97ED2521E638481009CF014 /* MessageUI.framework */,
 				E98D8A321E61013200D5647F /* libsqlite3.tbd */,
 				E98D8A1F1E60F7AA00D5647F /* CoreBluetooth.framework */,
