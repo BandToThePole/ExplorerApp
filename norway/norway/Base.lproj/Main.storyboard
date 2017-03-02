@@ -108,7 +108,7 @@
         <scene sceneID="JLu-sk-Jj3">
             <objects>
                 <navigationController id="Dir-Di-mlm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Connection" id="uq2-04-TLU"/>
+                    <tabBarItem key="tabBarItem" title="Connection" image="connection" id="uq2-04-TLU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YQP-mD-5g7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -146,7 +146,7 @@
         <scene sceneID="7Ba-Nd-Ybc">
             <objects>
                 <navigationController id="Ake-8n-VVQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Record" id="UGe-Fg-1Uo"/>
+                    <tabBarItem key="tabBarItem" title="Record" image="record" id="UGe-Fg-1Uo"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yJP-3t-QuC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -306,7 +306,7 @@
         <scene sceneID="Xdp-Fd-ApT">
             <objects>
                 <navigationController id="Ipg-n6-tjt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Send" id="mJQ-mD-pAZ"/>
+                    <tabBarItem key="tabBarItem" title="Send" image="send" id="mJQ-mD-pAZ"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="K4H-YV-ZEb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -323,7 +323,7 @@
         <scene sceneID="FC6-wD-Jgy">
             <objects>
                 <navigationController id="xL0-OY-iRB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Help" id="m3z-ie-naR"/>
+                    <tabBarItem key="tabBarItem" title="Help" image="help" id="m3z-ie-naR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qTv-zz-yp4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -340,7 +340,7 @@
         <scene sceneID="edO-QL-7t3">
             <objects>
                 <navigationController id="ftd-fH-RzZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sessions" id="VxI-kr-dJC"/>
+                    <tabBarItem key="tabBarItem" title="Sessions" image="sessions" id="VxI-kr-dJC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Da9-xV-Vqy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -420,4 +420,11 @@
             <point key="canvasLocation" x="2144.8000000000002" y="917.99100449775119"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="connection" width="30" height="30"/>
+        <image name="help" width="30" height="30"/>
+        <image name="record" width="30" height="30"/>
+        <image name="send" width="30" height="30"/>
+        <image name="sessions" width="30" height="30"/>
+    </resources>
 </document>
