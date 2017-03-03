@@ -8,12 +8,13 @@
 
 #import "BandDataStream.h"
 
-@interface BandDataStream ()
+@interface BandDataStream ()<CLLocationManagerDelegate>
 
 @property MSBClient * client;
 @property SerializedDatabase * database;
 @property RecordingSession * session;
 @property NSOperationQueue * streamQueue;
+@property CLLocationManager * locationManager;
 
 @end
 
@@ -26,6 +27,14 @@
         self.database = db;
         self.session = session;
         self.streamQueue = [NSOperationQueue new];
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        // TODO: Stream?
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        
+        // TODO: Maybe ask for permission some other time?
+        [self.locationManager requestAlwaysAuthorization];
     }
     return self;
 }
@@ -74,6 +83,18 @@
     }];
 }
 
+- (void)_streamLocation {
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    for (CLLocation * location in locations) {
+        Location * loc = [[Location alloc] initWithTime:location.timestamp lat:location.coordinate.latitude long:location.coordinate.longitude];
+        [self.session addLocation:loc];
+        [loc save:self.database];
+    }
+}
+
 - (void)begin {
     [self.session start];
     [self.session save:self.database];
@@ -91,12 +112,14 @@
     
     [self _streamCalories];
     [self _streamDistance];
+    [self _streamLocation];
 }
 
 - (void)end {
     [self.client.sensorManager stopHeartRateUpdatesErrorRef:nil];
     [self.client.sensorManager stopCaloriesUpdatesErrorRef:nil];
     [self.client.sensorManager stopDistanceUpdatesErrorRef:nil];
+    [self.locationManager stopUpdatingLocation];
     
     [self.session end];
     [self.session save:self.database];

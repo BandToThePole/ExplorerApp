@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MicrosoftBandKit_iOS/MicrosoftBandKit_iOS.h>
+#import <CoreLocation/CoreLocation.h>
 #import "RecordingSession.h"
 
 @interface BandDataStream : NSObject
