@@ -61,4 +61,11 @@
     return [other isKindOfClass:[self class]] && otherLoc.latitude == self.latitude && otherLoc.longitude == self.longitude;
 }
 
+- (CLLocationCoordinate2D)coordinate {
+    CLLocationCoordinate2D coord;
+    coord.longitude = self.longitude;
+    coord.latitude = self.latitude;
+    return coord;
+}
+
 @end

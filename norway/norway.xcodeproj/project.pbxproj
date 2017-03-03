@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E9627DFE1E69C29A00B8AF40 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9627DFD1E69C29A00B8AF40 /* CoreLocation.framework */; };
+		E9627E001E69C66500B8AF40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9627DFF1E69C66500B8AF40 /* MapKit.framework */; };
+		E9627E031E69C78600B8AF40 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9627E021E69C78600B8AF40 /* MapViewController.m */; };
 		E97ED2331E6359EE009CF014 /* NorwayDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2321E6359EE009CF014 /* NorwayDatabase.m */; };
 		E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2351E635B6B009CF014 /* RecordingSession.m */; };
 		E97ED2391E635C39009CF014 /* HeartRate.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2381E635C39009CF014 /* HeartRate.m */; };
@@ -53,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		E9627DFD1E69C29A00B8AF40 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E9627DFF1E69C66500B8AF40 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E9627E011E69C78600B8AF40 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		E9627E021E69C78600B8AF40 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		E97ED2311E6359EE009CF014 /* NorwayDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NorwayDatabase.h; sourceTree = "<group>"; };
 		E97ED2321E6359EE009CF014 /* NorwayDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NorwayDatabase.m; sourceTree = "<group>"; };
 		E97ED2341E635B6B009CF014 /* RecordingSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingSession.h; sourceTree = "<group>"; };
@@ -115,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9627E001E69C66500B8AF40 /* MapKit.framework in Frameworks */,
 				E9627DFE1E69C29A00B8AF40 /* CoreLocation.framework in Frameworks */,
 				E9F8247E1E6893B400AE2CCB /* libcompression.tbd in Frameworks */,
 				E97ED2531E638481009CF014 /* MessageUI.framework in Frameworks */,
@@ -206,6 +212,7 @@
 		E98D8A1E1E60F7AA00D5647F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9627DFF1E69C66500B8AF40 /* MapKit.framework */,
 				E9627DFD1E69C29A00B8AF40 /* CoreLocation.framework */,
 				E9F8247D1E6893B400AE2CCB /* libcompression.tbd */,
 				E97ED2521E638481009CF014 /* MessageUI.framework */,
@@ -264,6 +271,8 @@
 				E9F824781E6846D800AE2CCB /* StringTableViewController.m */,
 				E9F8247A1E685FEB00AE2CCB /* ExportTableViewController.h */,
 				E9F8247B1E685FEB00AE2CCB /* ExportTableViewController.m */,
+				E9627E011E69C78600B8AF40 /* MapViewController.h */,
+				E9627E021E69C78600B8AF40 /* MapViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -399,6 +408,7 @@
 				E9F8247C1E685FEB00AE2CCB /* ExportTableViewController.m in Sources */,
 				E97ED2511E637A95009CF014 /* BandDataStream.m in Sources */,
 				E98D8A371E61025A00D5647F /* Query.m in Sources */,
+				E9627E031E69C78600B8AF40 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

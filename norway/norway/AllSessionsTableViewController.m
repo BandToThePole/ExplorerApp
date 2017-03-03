@@ -12,6 +12,7 @@
 #import "RecordingSession.h"
 #import "StringTableViewController.h"
 #import "NSArray+NWY.h"
+#import "MapViewController.h"
 
 @interface AllSessionsTableViewController ()
 
@@ -101,6 +102,12 @@
     
     [dataTypeSelect addAction:[UIAlertAction actionWithTitle:@"Location" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self showDataForSession:session withKey:@"locations" title:action.title];
+    }]];
+    
+    [dataTypeSelect addAction:[UIAlertAction actionWithTitle:@"Map" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        MapViewController * mvc = [self.storyboard instantiateViewControllerWithIdentifier:@"mapVC"];
+        mvc.locations = session.locations;
+        [self.navigationController pushViewController:mvc animated:YES];
     }]];
     
     [dataTypeSelect addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];

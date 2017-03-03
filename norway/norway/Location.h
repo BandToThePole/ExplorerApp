@@ -8,9 +8,11 @@
 
 #import "DatabaseObject.h"
 
+#import <MapKit/MapKit.h>
+
 @class RecordingSession;
 
-@interface Location : DatabaseObject
+@interface Location : DatabaseObject<MKAnnotation>
 
 // TODO: Use iOS locations APIs instead
 
