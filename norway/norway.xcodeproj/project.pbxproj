@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CB32297284F44828FB8128F /* libPods-NorwayTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F10A0E1D9B42FC47C97EC5B /* libPods-NorwayTests.a */; };
+		C2542DEDC975BA4F37E6CF96 /* libPods-norway.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED692A0603E93E3BACFF7A34 /* libPods-norway.a */; };
 		E9627DFE1E69C29A00B8AF40 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9627DFD1E69C29A00B8AF40 /* CoreLocation.framework */; };
 		E9627E001E69C66500B8AF40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9627DFF1E69C66500B8AF40 /* MapKit.framework */; };
 		E9627E031E69C78600B8AF40 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9627E021E69C78600B8AF40 /* MapViewController.m */; };
@@ -54,6 +56,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		43F95D9F22E52D9997875286 /* Pods-norway.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norway.release.xcconfig"; path = "Pods/Target Support Files/Pods-norway/Pods-norway.release.xcconfig"; sourceTree = "<group>"; };
+		5F10A0E1D9B42FC47C97EC5B /* libPods-NorwayTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NorwayTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1336BFC030120C00B9C0016 /* Pods-norway.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-norway.debug.xcconfig"; path = "Pods/Target Support Files/Pods-norway/Pods-norway.debug.xcconfig"; sourceTree = "<group>"; };
+		DCDB7DBC1A55C818E576350C /* Pods-NorwayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NorwayTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NorwayTests/Pods-NorwayTests.release.xcconfig"; sourceTree = "<group>"; };
 		E9627DFD1E69C29A00B8AF40 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E9627DFF1E69C66500B8AF40 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E9627E011E69C78600B8AF40 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -113,6 +119,8 @@
 		E9F8247A1E685FEB00AE2CCB /* ExportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportTableViewController.h; sourceTree = "<group>"; };
 		E9F8247B1E685FEB00AE2CCB /* ExportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportTableViewController.m; sourceTree = "<group>"; };
 		E9F8247D1E6893B400AE2CCB /* libcompression.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcompression.tbd; path = usr/lib/libcompression.tbd; sourceTree = SDKROOT; };
+		ED692A0603E93E3BACFF7A34 /* libPods-norway.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-norway.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFC6B9995B2DCC67F9AAE81B /* Pods-NorwayTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NorwayTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NorwayTests/Pods-NorwayTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,7 @@
 				E98D8A331E61013200D5647F /* libsqlite3.tbd in Frameworks */,
 				E98D8A201E60F7AA00D5647F /* CoreBluetooth.framework in Frameworks */,
 				E98D8A1D1E60F78200D5647F /* MicrosoftBandKit_iOS.framework in Frameworks */,
+				C2542DEDC975BA4F37E6CF96 /* libPods-norway.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,12 +143,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CB32297284F44828FB8128F /* libPods-NorwayTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C222941F10973287331B621E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FFC6B9995B2DCC67F9AAE81B /* Pods-NorwayTests.debug.xcconfig */,
+				DCDB7DBC1A55C818E576350C /* Pods-NorwayTests.release.xcconfig */,
+				D1336BFC030120C00B9C0016 /* Pods-norway.debug.xcconfig */,
+				43F95D9F22E52D9997875286 /* Pods-norway.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E97ED2401E636CC5009CF014 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +191,7 @@
 				E98D8A261E60FCC000D5647F /* NorwayTests */,
 				E98D8A031E60F6C500D5647F /* Products */,
 				E98D8A1E1E60F7AA00D5647F /* Frameworks */,
+				C222941F10973287331B621E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +240,8 @@
 				E97ED2521E638481009CF014 /* MessageUI.framework */,
 				E98D8A321E61013200D5647F /* libsqlite3.tbd */,
 				E98D8A1F1E60F7AA00D5647F /* CoreBluetooth.framework */,
+				5F10A0E1D9B42FC47C97EC5B /* libPods-NorwayTests.a */,
+				ED692A0603E93E3BACFF7A34 /* libPods-norway.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -284,9 +308,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E98D8A191E60F6C500D5647F /* Build configuration list for PBXNativeTarget "norway" */;
 			buildPhases = (
+				ABEC0D8F7DAFB2298F039B6B /* [CP] Check Pods Manifest.lock */,
 				E98D89FE1E60F6C500D5647F /* Sources */,
 				E98D89FF1E60F6C500D5647F /* Frameworks */,
 				E98D8A001E60F6C500D5647F /* Resources */,
+				3445378D95D840EE06CCAC90 /* [CP] Embed Pods Frameworks */,
+				7D83FB8C474C675D8B7936D1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -301,9 +328,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E98D8A2C1E60FCC000D5647F /* Build configuration list for PBXNativeTarget "NorwayTests" */;
 			buildPhases = (
+				3536A6F9C75EBBEFB70BD4C7 /* [CP] Check Pods Manifest.lock */,
 				E98D8A211E60FCBF00D5647F /* Sources */,
 				E98D8A221E60FCBF00D5647F /* Frameworks */,
 				E98D8A231E60FCBF00D5647F /* Resources */,
+				5DC54102DF6A31BE6CE6586C /* [CP] Embed Pods Frameworks */,
+				88BC6E857E9EDB2A54425E0B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -381,6 +411,99 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3445378D95D840EE06CCAC90 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-norway/Pods-norway-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3536A6F9C75EBBEFB70BD4C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5DC54102DF6A31BE6CE6586C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NorwayTests/Pods-NorwayTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D83FB8C474C675D8B7936D1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-norway/Pods-norway-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		88BC6E857E9EDB2A54425E0B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NorwayTests/Pods-NorwayTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ABEC0D8F7DAFB2298F039B6B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E98D89FE1E60F6C500D5647F /* Sources */ = {
@@ -542,6 +665,7 @@
 		};
 		E98D8A1A1E60F6C500D5647F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1336BFC030120C00B9C0016 /* Pods-norway.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XT4Q76JCC4;
@@ -558,6 +682,7 @@
 		};
 		E98D8A1B1E60F6C500D5647F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43F95D9F22E52D9997875286 /* Pods-norway.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = XT4Q76JCC4;
@@ -574,6 +699,7 @@
 		};
 		E98D8A2D1E60FCC000D5647F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFC6B9995B2DCC67F9AAE81B /* Pods-NorwayTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = XT4Q76JCC4;
@@ -587,6 +713,7 @@
 		};
 		E98D8A2E1E60FCC000D5647F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCDB7DBC1A55C818E576350C /* Pods-NorwayTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = XT4Q76JCC4;
