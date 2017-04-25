@@ -166,4 +166,24 @@
     return data;
 }
 
++ (NSDate*)lastSync {
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults objectForKey:@"lastSyncDate"];
+}
+
+- (NSInteger)numberCanSync {
+    __block NSInteger k = 0;
+    [self.serialDB serialTransaction:^(sqlite3 *db) {
+        // IS NULL required because the initial version didn't set the synced column
+        Query * query = [[Query alloc] initWithDatabase:db string:@"SELECT COUNT(*) FROM sessions WHERE end > start AND (synced = 0 OR synced IS NULL)", nil];
+        [query next];
+        k = [query integerColumn:0];
+    }];
+    return k;
+}
+
+- (void)startSync {
+    
+}
+
 @end

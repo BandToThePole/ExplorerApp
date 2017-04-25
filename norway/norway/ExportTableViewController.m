@@ -15,12 +15,17 @@
 
 @interface ExportTableViewController ()<MFMailComposeViewControllerDelegate>
 
+@property NorwayDatabase * database;
+
 @end
 
 @implementation ExportTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    AppDelegate * ad = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    self.database = ad.database;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -59,7 +64,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([SyncAccount isSignedIn]) {
-        return 1;
+        return 2;
     }
     else {
         return 1;
@@ -74,6 +79,9 @@
         else {
             return 1;
         }
+    }
+    else if (section == 1) {
+        return 2;
     }
     return 0;
 }
@@ -95,6 +103,14 @@
         }
         else {
             cell.textLabel.text = @"Sign in";
+        }
+    }
+    else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"Sync new";
+        }
+        else if (indexPath.row == 1) {
+            cell.textLabel.text = @"Sync all";
         }
     }
     
@@ -129,10 +145,49 @@
             [self.tableView reloadData];
         }
     }
+    else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            [self.database startSync];
+        }
+    }
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Account";
+    if (section == 0) {
+        return @"Account";
+    }
+    else if (section == 1) {
+        return @"Sync";
+    }
+    else {
+        return nil;
+    }
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 1) {
+        NSInteger numberCanSync = [self.database numberCanSync];
+        NSMutableString * footer = [NSMutableString new];
+        if (numberCanSync == 0) {
+            [footer appendFormat:@"There are no sessions that need syncing. "];
+        }
+        else if (numberCanSync == 1) {
+            [footer appendFormat:@"There is one sessions that can be synced. "];
+        }
+        else {
+            [footer appendFormat:@"There are %ld sessions that need syncing. ", (long)numberCanSync];
+        }
+        
+        NSDate * lastSync = [NorwayDatabase lastSync];
+        if (lastSync) {
+            [footer appendFormat:@"The last sync was at %@.", lastSync];
+        }
+        else {
+            [footer appendFormat:@"No data has been synced yet."];
+        }
+        return footer;
+    }
+    return nil;
 }
 
 @end

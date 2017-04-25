@@ -11,6 +11,8 @@
 #import "Query.h"
 #import "RecordingSession.h"
 
+
+
 @interface NorwayDatabase : NSObject
 
 + (NSString*)generateGUID;
@@ -27,5 +29,11 @@
 + (NSDictionary*)serializeSessions:(NSArray<RecordingSession*>*)sessions;
 
 + (NSData*)encodeDictionary:(NSDictionary*)dict zlibCompress:(BOOL)compress;
+
++ (NSDate*)lastSync;
+
+- (void)startSync;
+
+- (NSInteger)numberCanSync;
 
 @end
