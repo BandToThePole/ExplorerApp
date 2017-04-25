@@ -88,6 +88,7 @@
             NSString * colName = [NSString stringWithUTF8String:sqlite3_column_name(_statement, i)];
             columns[colName.lowercaseString] = @(i);
         }
+        self.columns = columns;
     }
     return [self.columns objectForKey:name.lowercaseString] ? [[self.columns objectForKey:name.lowercaseString] integerValue] : -1;
 }
@@ -109,6 +110,10 @@
         return nil;
     }
     return [NSString stringWithUTF8String:(const char*)sqlite3_column_text(_statement, (int)column)];
+}
+
+- (BOOL)boolColumn:(NSInteger)column {
+    return [self integerColumn:column] != 0;
 }
 
 @end

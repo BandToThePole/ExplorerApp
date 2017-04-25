@@ -77,6 +77,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dateCell" forIndexPath:indexPath];
     RecordingSession * session = self.sessions[indexPath.row];
     cell.textLabel.text = [self.formatter stringFromDate:session.startDate];
+    if (session.synced) {
+        cell.imageView.image = [UIImage imageNamed:@"cloud_done"];
+    }
+    else if (session.canSync) {
+        cell.imageView.image = [UIImage imageNamed:@"cloud_todo"];
+    }
+    else {
+        cell.imageView.image = [UIImage imageNamed:@"cloud_cant"];
+    }
     return cell;
 }
 

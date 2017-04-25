@@ -20,11 +20,13 @@
 // Use for updates
 - (BOOL)execute;
 
+// Caches column indicies, so actually reasonably fast to use
 - (NSInteger)columnIndex:(NSString*)name;
 
 - (double)doubleColumn:(NSInteger)column;
 - (NSInteger)integerColumn:(NSInteger)column;
 - (NSDate*)dateColumn:(NSInteger)column;
 - (NSString*)stringColumn:(NSInteger)column;
+- (BOOL)boolColumn:(NSInteger)column;
 
 @end

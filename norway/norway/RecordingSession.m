@@ -10,6 +10,8 @@
 #import "Query.h"
 #import "NSArray+NWY.h"
 
+#import "NorwayDatabase.h"
+
 NSString * const RecordingSessionChanged = @"recordingSessionChanged";
 
 @interface RecordingSession ()
@@ -18,6 +20,9 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
 @property NSMutableArray<Calories*>* caloriesMutable;
 @property NSMutableArray<Location*>* locationsMutable;
 @property NSMutableArray<Distance*>* distancesMutable;
+
+@property NSString * guid;
+@property BOOL synced;
 
 @end
 
@@ -32,6 +37,9 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
         
         self.startDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
         self.endDate = [NSDate dateWithTimeIntervalSinceReferenceDate:0];
+        
+        self.guid = [NorwayDatabase generateGUID];
+        self.synced = NO;
     }
     return self;
 }
@@ -43,8 +51,10 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
         self.locationsMutable = [NSMutableArray new];
         self.distancesMutable = [NSMutableArray new];
         
-        self.startDate = [query dateColumn:2];
-        self.endDate = [query dateColumn:3];
+        self.startDate = [query dateColumn:[query columnIndex:@"start"]];
+        self.endDate = [query dateColumn:[query columnIndex:@"end"]];
+        self.guid = [query stringColumn:[query columnIndex:@"guid"]];
+        self.synced = [query boolColumn:[query columnIndex:@"synced"]];
     }
     return self;
 }
@@ -53,14 +63,14 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
     __block BOOL success = NO;
     [serialDB serialTransaction:^(sqlite3 *db) {
         if (self.databaseID == 0) {
-            Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO sessions(start, end) VALUES(?,?)", self.startDate, self.endDate, nil];
+            Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO sessions(start, end, guid, synced) VALUES(?,?,?,?)", self.startDate, self.endDate, self.guid, @(self.synced), nil];
             success = [query execute];
             if (success) {
                 self.databaseID = [serialDB lastInsertID];
             }
         }
         else {
-            Query * query = [[Query alloc] initWithDatabase:db string:@"UPDATE sessions SET start=?,end=? WHERE sessionid = ?", self.startDate, self.endDate, @(self.databaseID), nil];
+            Query * query = [[Query alloc] initWithDatabase:db string:@"UPDATE sessions SET start=?,end=?,guid=?,synced=? WHERE sessionid = ?", self.startDate, self.endDate, self.guid, @(self.synced), @(self.databaseID), nil];
             success = [query execute];
         }
     }];
@@ -117,7 +127,7 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
 - (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter sinceDate:(NSDate *)date {
     return @{ @"start": [formatter stringFromDate:self.startDate],
               @"end": [formatter stringFromDate:self.endDate],
-              // This would be much nicer in Swift (laughing crying face emoji)
+              @"guid": self.guid,
               @"locations": [[self coalesce:self.locations] nwy_map:^id(id x) {
                   return [x serializedDictionaryWithFormatter:formatter sinceDate:date];
               }],
@@ -141,6 +151,10 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
         }
     }
     return newArray;
+}
+
+- (BOOL)canSync {
+    return !self.synced && self.endDate.timeIntervalSinceReferenceDate > self.startDate.timeIntervalSinceReferenceDate;
 }
 
 @end

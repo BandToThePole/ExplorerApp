@@ -29,6 +29,10 @@ extern NSString * const RecordingSessionChanged;
 
 - (void)end;
 
+@property (readonly) BOOL synced;
+@property (readonly) NSString * guid;
+@property (readonly) BOOL canSync;
+
 @property (readonly) NSArray<HeartRate*>* heartData;
 @property (readonly) NSArray<Calories*>* calories;
 @property (readonly) NSArray<Location*>* locations;
