@@ -27,7 +27,6 @@
 }
 
 + (void)signOut {
-    [[SyncAccount wrapper] resetKeychainItem];
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:NO forKey:@"signedin"];
     [defaults synchronize];
