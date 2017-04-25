@@ -12,6 +12,8 @@
 		E9627DFE1E69C29A00B8AF40 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9627DFD1E69C29A00B8AF40 /* CoreLocation.framework */; };
 		E9627E001E69C66500B8AF40 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9627DFF1E69C66500B8AF40 /* MapKit.framework */; };
 		E9627E031E69C78600B8AF40 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9627E021E69C78600B8AF40 /* MapViewController.m */; };
+		E96325131EAF99C9001C035A /* SyncAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = E96325121EAF99C9001C035A /* SyncAccount.m */; };
+		E96325161EAFC6BE001C035A /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E96325151EAFC6BE001C035A /* KeychainWrapper.m */; };
 		E97ED2331E6359EE009CF014 /* NorwayDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2321E6359EE009CF014 /* NorwayDatabase.m */; };
 		E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2351E635B6B009CF014 /* RecordingSession.m */; };
 		E97ED2391E635C39009CF014 /* HeartRate.m in Sources */ = {isa = PBXBuildFile; fileRef = E97ED2381E635C39009CF014 /* HeartRate.m */; };
@@ -64,6 +66,10 @@
 		E9627DFF1E69C66500B8AF40 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E9627E011E69C78600B8AF40 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		E9627E021E69C78600B8AF40 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		E96325111EAF99C9001C035A /* SyncAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncAccount.h; sourceTree = "<group>"; };
+		E96325121EAF99C9001C035A /* SyncAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncAccount.m; sourceTree = "<group>"; };
+		E96325141EAFC6BE001C035A /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		E96325151EAFC6BE001C035A /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		E97ED2311E6359EE009CF014 /* NorwayDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NorwayDatabase.h; sourceTree = "<group>"; };
 		E97ED2321E6359EE009CF014 /* NorwayDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NorwayDatabase.m; sourceTree = "<group>"; };
 		E97ED2341E635B6B009CF014 /* RecordingSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingSession.h; sourceTree = "<group>"; };
@@ -276,6 +282,10 @@
 				E97ED2451E637027009CF014 /* DatabaseObject.m */,
 				E9F824621E680DF200AE2CCB /* Distance.h */,
 				E9F824631E680DF200AE2CCB /* Distance.m */,
+				E96325141EAFC6BE001C035A /* KeychainWrapper.h */,
+				E96325151EAFC6BE001C035A /* KeychainWrapper.m */,
+				E96325111EAF99C9001C035A /* SyncAccount.h */,
+				E96325121EAF99C9001C035A /* SyncAccount.m */,
 			);
 			name = Model/Database;
 			sourceTree = "<group>";
@@ -519,6 +529,7 @@
 				E97ED2361E635B6B009CF014 /* RecordingSession.m in Sources */,
 				E9F8246E1E683A7A00AE2CCB /* HelpViewController.m in Sources */,
 				E97ED23C1E6366EE009CF014 /* Calories.m in Sources */,
+				E96325161EAFC6BE001C035A /* KeychainWrapper.m in Sources */,
 				E97ED23F1E636A7B009CF014 /* Location.m in Sources */,
 				E97ED24A1E6371BD009CF014 /* NSArray+NWY.m in Sources */,
 				E98D8A071E60F6C500D5647F /* main.m in Sources */,
@@ -526,6 +537,7 @@
 				E97ED24E1E637656009CF014 /* ConnectionManager.m in Sources */,
 				E97ED2391E635C39009CF014 /* HeartRate.m in Sources */,
 				E9F824731E683BC800AE2CCB /* RecordSessionViewController.m in Sources */,
+				E96325131EAF99C9001C035A /* SyncAccount.m in Sources */,
 				E9F824761E68432900AE2CCB /* AllSessionsTableViewController.m in Sources */,
 				E9F8246B1E682ECD00AE2CCB /* ConnectionManagerViewControllerTableViewController.m in Sources */,
 				E9F8247C1E685FEB00AE2CCB /* ExportTableViewController.m in Sources */,

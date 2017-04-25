@@ -11,6 +11,8 @@
 
 #import <MessageUI/MessageUI.h>
 
+#import "SyncAccount.h"
+
 @interface ExportTableViewController ()<MFMailComposeViewControllerDelegate>
 
 @end
@@ -56,13 +58,81 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    if ([SyncAccount isSignedIn]) {
+        return 1;
+    }
+    else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        if ([SyncAccount isSignedIn]) {
+            return 2;
+        }
+        else {
+            return 1;
+        }
+    }
     return 0;
 }
 
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell"];
+    
+    cell.textLabel.textColor = [UIColor blackColor];
+    
+    if (indexPath.section == 0) {
+        if ([SyncAccount isSignedIn]) {
+            if (indexPath.row == 0) {
+                cell.textLabel.text = [SyncAccount username];
+            }
+            else if (indexPath.row == 1) {
+                cell.textLabel.textColor = [UIColor redColor];
+                cell.textLabel.text = @"Sign out";
+            }
+        }
+        else {
+            cell.textLabel.text = @"Sign in";
+        }
+    }
+    
+    return cell;
+}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        if (![SyncAccount isSignedIn] && indexPath.row == 0) {
+            // Sign in action
+            UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Login" message:@"Enter username and password" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.placeholder = @"Username";
+            }];
+            [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+                textField.placeholder = @"Password";
+                textField.secureTextEntry = YES;
+            }];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                // No op
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [SyncAccount setUsername:[alert.textFields[0] text] passwword:[alert.textFields[1] text]];
+                [self.tableView reloadData];
+            }]];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        else if (indexPath.row == 1) {
+            [SyncAccount signOut];
+            [self.tableView reloadData];
+        }
+    }
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Account";
+}
 
 @end
