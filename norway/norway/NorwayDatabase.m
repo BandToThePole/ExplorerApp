@@ -16,24 +16,85 @@
 // Non-read only private version
 @property SerializedDatabase * serialDB;
 
+@property NSInteger databaseVersion;
+
 @end
 
 @implementation NorwayDatabase
+
++ (NSString*)generateGUID {
+    NSUUID * guid = [NSUUID UUID];
+    return guid.UUIDString;
+}
 
 + (NSString*)databasePath {
     NSString * documents = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     return [documents stringByAppendingPathComponent:@"documents.db"];
 }
 
+- (NSInteger)databaseVersion {
+    __block NSInteger version = 0;
+    [self.serialDB serialTransaction:^(sqlite3 *db) {
+        Query * query = [[Query alloc] initWithDatabase:db string:@"PRAGMA user_version", nil];
+        [query next];
+        version = [query integerColumn:0];
+    }];
+    return version;
+}
+
+- (void)setDatabaseVersion:(NSInteger)databaseVersion {
+    [self.serialDB serialTransaction:^(sqlite3 *db) {
+        // Note that in order to change user_version you can't use placeholders, so its OK to use stringWithFormat here
+        [[[Query alloc] initWithDatabase:db string:[NSString stringWithFormat:@"PRAGMA user_version = %ld", (long)databaseVersion], nil] execute];
+    }];
+}
+
+- (void)_createGUIDsWhereNecessary {
+    [self.serialDB serialTransaction:^(sqlite3 *db) {
+        Query * sessions = [[Query alloc] initWithDatabase:db string:@"SELECT sessionid FROM sessions WHERE guid is null", nil];
+        while ([sessions next]) {
+            NSInteger databaseID = [sessions integerColumn:0];
+            NSString * guid = [NorwayDatabase generateGUID];
+            Query * update = [[Query alloc] initWithDatabase:db string:@"UPDATE sessions SET guid = ? WHERE sessionid = ?", guid, @(databaseID), nil];
+            [update execute];
+            NSLog(@"Had to add %@ to %ld", guid, (long)databaseID);
+        }
+    }];
+}
+
 - (BOOL)_createSchemaIfNecessary {
     __block BOOL success = NO;
+    
+    NSLog(@"Database version = %ld", (long)[self databaseVersion]);
+    
+    // Creates version 0 of the database
     [self.serialDB serialTransaction:^(sqlite3 *db) {
-        success = [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS sessions (sessionid INTEGER PRIMARY KEY AUTOINCREMENT, start REAL, end REAL)", nil] execute];
-        success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS locations (locationid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, lat REAL, long REAL, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
-        success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS heartrates (heartrateid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, bpm INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
-        success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS calories (calorieid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, kcalcount INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
-        success = success && [[[Query alloc] initWithDatabase:db string:@"CREATE TABLE IF NOT EXISTS distances (distanceid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, distance INTEGER, speed REAL, pace REAL, motion TEXT, FOREIGN KEY(session) REFERENCES sessions(sessionid))", nil] execute];
+        success = [self.serialDB execute:@"CREATE TABLE IF NOT EXISTS sessions (sessionid INTEGER PRIMARY KEY AUTOINCREMENT, start REAL, end REAL)"];
+        success = success && [self.serialDB execute:@"CREATE TABLE IF NOT EXISTS locations (locationid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, lat REAL, long REAL, FOREIGN KEY(session) REFERENCES sessions(sessionid))"];
+        success = success && [self.serialDB execute:@"CREATE TABLE IF NOT EXISTS heartrates (heartrateid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, bpm INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))"];
+        success = success && [self.serialDB execute:@"CREATE TABLE IF NOT EXISTS calories (calorieid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, kcalcount INTEGER, FOREIGN KEY(session) REFERENCES sessions(sessionid))"];
+        success = success && [self.serialDB execute:@"CREATE TABLE IF NOT EXISTS distances (distanceid INTEGER PRIMARY KEY AUTOINCREMENT, session INTEGER, time REAL, distance INTEGER, speed REAL, pace REAL, motion TEXT, FOREIGN KEY(session) REFERENCES sessions(sessionid))"];
     }];
+    
+    // Version 1 adds a boolean synced column to the sessions table
+    if (self.databaseVersion < 1) {
+        [self.serialDB serialTransaction:^(sqlite3 *db) {
+            [self.serialDB execute:@"ALTER TABLE sessions ADD COLUMN synced INTEGER"];
+        }];
+        self.databaseVersion = 1;
+    }
+    
+    // Version 2 adds a GUID column to the sessions table
+    if (self.databaseVersion < 2) {
+        [self.serialDB serialTransaction:^(sqlite3 *db) {
+            [self.serialDB execute:@"ALTER TABLE sessions ADD COLUMN guid TEXT"];
+        }];
+        self.databaseVersion = 2;
+    }
+    
+    // The original version of the app didn't store anything in the GUID column, so we need to fill that out
+    [self _createGUIDsWhereNecessary];
+    
     return success;
 }
 

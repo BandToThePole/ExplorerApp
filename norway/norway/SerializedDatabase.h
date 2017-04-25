@@ -21,4 +21,9 @@ extern NSString * SerializedDatabaseError;
 
 - (void)serialTransaction:(void(^)(sqlite3 * db))transaction;
 
+// Should only be called in a serialTransaction block
+- (BOOL)execute:(NSString*)query;
+
+- (NSArray<NSString*>*)columnNames:(NSString*)tableName;
+
 @end

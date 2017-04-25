@@ -13,6 +13,8 @@
 
 @interface NorwayDatabase : NSObject
 
++ (NSString*)generateGUID;
+
 + (NSString*)databasePath;
 
 // Creates tables on creation

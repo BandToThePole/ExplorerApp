@@ -7,6 +7,7 @@
 //
 
 #import "SerializedDatabase.h"
+#import "Query.h"
 
 NSString * SerializedDatabaseError = @"SerializedDatabaseError";
 
@@ -57,6 +58,21 @@ NSString * SerializedDatabaseError = @"SerializedDatabaseError";
     dispatch_sync(_queue, ^{
         transaction(_db);
     });
+}
+
+- (BOOL)execute:(NSString *)query {
+    return [[[Query alloc] initWithDatabase:_db string:query, nil] execute];
+}
+
+- (NSArray<NSString*>*)columnNames:(NSString*)tableName {
+    NSMutableArray<NSString*> * names = [NSMutableArray new];
+    [self serialTransaction:^(sqlite3 *db) {
+        Query * q = [[Query alloc] initWithDatabase:db string:[NSString stringWithFormat:@"PRAGMA table_info(%@)", tableName], nil];
+        while ([q next]) {
+            [names addObject:[q stringColumn:1]]; // cid, name, type, notnull, dflt_value, pk
+        }
+    }];
+    return names;
 }
 
 @end
