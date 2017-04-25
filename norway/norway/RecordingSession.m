@@ -88,6 +88,10 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
     [[NSNotificationCenter defaultCenter] postNotificationName:RecordingSessionChanged object:self];
 }
 
+- (void)markSynced {
+    self.synced = YES;
+}
+
 - (void)addHeartRate:(HeartRate *)heartRateDatum {
     heartRateDatum.session = self;
     [self.heartDataMutable addObject:heartRateDatum];

@@ -29,6 +29,8 @@ extern NSString * const RecordingSessionChanged;
 
 - (void)end;
 
+- (void)markSynced;
+
 @property (readonly) BOOL synced;
 @property (readonly) NSString * guid;
 @property (readonly) BOOL canSync;

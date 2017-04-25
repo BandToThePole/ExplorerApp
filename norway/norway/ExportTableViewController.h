@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NorwayDatabase.h"
 
-@interface ExportTableViewController : UITableViewController
+@interface ExportTableViewController : UITableViewController<NorwayDatabaseDelegate>
 
 @end

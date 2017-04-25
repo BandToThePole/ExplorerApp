@@ -8,10 +8,17 @@
 
 #import "NorwayDatabase.h"
 #import "NSArray+NWY.h"
+#import "SyncAccount.h"
 
 #import <compression.h>
 
-@interface NorwayDatabase ()
+@interface NorwayDatabase () {
+    NSURLSession * _defaultSession;
+}
+
+@property NSOperationQueue * backgroundDataPrepQueue;
+
+@property NSURLSessionDataTask * dataTask;
 
 // Non-read only private version
 @property SerializedDatabase * serialDB;
@@ -101,6 +108,8 @@
 - (instancetype)initWithSerialDatabase:(SerializedDatabase *)serialDB {
     if (self = [super init]) {
         self.serialDB = serialDB;
+        self.backgroundDataPrepQueue = [NSOperationQueue new];
+        self.backgroundDataPrepQueue.maxConcurrentOperationCount = 1;
         if (![self _createSchemaIfNecessary]) {
             return nil;
         }
@@ -108,35 +117,50 @@
     return self;
 }
 
+- (NSArray<RecordingSession*>*)allSessionsFromQuery:(Query*)sessionsQuery database:(sqlite3*)db {
+    NSMutableArray<RecordingSession*>* sessions = [NSMutableArray new];
+    while ([sessionsQuery next]) {
+        RecordingSession * session = [[RecordingSession alloc] initWithQuery:sessionsQuery];
+        
+        Query * locations = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM locations WHERE session = ?", @(session.databaseID), nil];
+        while ([locations next]) {
+            [session addLocation:[[Location alloc] initWithQuery:locations]];
+        }
+        
+        Query * heartrates = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM heartrates WHERE session = ?", @(session.databaseID), nil];
+        while ([heartrates next]) {
+            [session addHeartRate:[[HeartRate alloc] initWithQuery:heartrates]];
+        }
+        
+        Query * calories = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM calories WHERE session = ?", @(session.databaseID), nil];
+        while ([calories next]) {
+            [session addCalories:[[Calories alloc] initWithQuery:calories]];
+        }
+        
+        Query * distances = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM distances WHERE session = ?", @(session.databaseID), nil];
+        while ([distances next]) {
+            [session addDistance:[[Distance alloc] initWithQuery:distances]];
+        }
+        
+        [sessions addObject:session];
+    }
+    return sessions;
+}
+
 - (NSArray<RecordingSession*>*)allSessions {
-    NSMutableArray * sessions = [NSMutableArray new];
+    __block NSArray * sessions = nil;
     [self.serialDB serialTransaction:^(sqlite3 *db) {
         Query * sessionsQuery = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM sessions", nil];
-        while ([sessionsQuery next]) {
-            RecordingSession * session = [[RecordingSession alloc] initWithQuery:sessionsQuery];
-            
-            Query * locations = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM locations WHERE session = ?", @(session.databaseID), nil];
-            while ([locations next]) {
-                [session addLocation:[[Location alloc] initWithQuery:locations]];
-            }
-            
-            Query * heartrates = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM heartrates WHERE session = ?", @(session.databaseID), nil];
-            while ([heartrates next]) {
-                [session addHeartRate:[[HeartRate alloc] initWithQuery:heartrates]];
-            }
-            
-            Query * calories = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM calories WHERE session = ?", @(session.databaseID), nil];
-            while ([calories next]) {
-                [session addCalories:[[Calories alloc] initWithQuery:calories]];
-            }
-            
-            Query * distances = [[Query alloc] initWithDatabase:db string:@"SELECT * FROM distances WHERE session = ?", @(session.databaseID), nil];
-            while ([distances next]) {
-                [session addDistance:[[Distance alloc] initWithQuery:distances]];
-            }
-            
-            [sessions addObject:session];
-        }
+        sessions = [self allSessionsFromQuery:sessionsQuery database:db];
+    }];
+    return sessions;
+}
+
+- (NSArray<RecordingSession*>*)allSessionsToSync:(BOOL)all {
+    __block NSArray * sessions = nil;
+    [self.serialDB serialTransaction:^(sqlite3 *db) {
+        Query * sessionsQuery = [[Query alloc] initWithDatabase:db string:[NSString stringWithFormat:@"SELECT * FROM sessions WHERE end > start %@", all ? @"" : @"AND (synced = 0 OR synced IS NULL)"], nil];
+        sessions = [self allSessionsFromQuery:sessionsQuery database:db];
     }];
     return sessions;
 }
@@ -171,6 +195,11 @@
     return [defaults objectForKey:@"lastSyncDate"];
 }
 
++ (NSInteger)lastSyncByteCount {
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults integerForKey:@"lastSyncByteCount"];
+}
+
 - (NSInteger)numberCanSync {
     __block NSInteger k = 0;
     [self.serialDB serialTransaction:^(sqlite3 *db) {
@@ -182,8 +211,69 @@
     return k;
 }
 
-- (void)startSync {
-    
+#pragma mark - Sync
+
+- (NSURLSession*)defaultSession {
+    if (!_defaultSession) {
+        _defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    }
+    return _defaultSession;
+}
+
+- (void)startSyncWithAllData:(BOOL)allData {
+    [self.backgroundDataPrepQueue addOperationWithBlock:^{
+        if (self.dataTask) {
+            // Terminate any existing sync sessions
+            [self.dataTask cancel];
+        }
+        
+        NSString * username = [[SyncAccount username] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
+        NSString * password = [[SyncAccount password] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPasswordAllowedCharacterSet]];
+        
+        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@:%@@bandtothepoleweb.azurewebsites.net/api/data", username, password]];
+        NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60];
+        urlRequest.HTTPMethod = @"POST";
+        
+        NSArray<RecordingSession*>* sessions = [self allSessionsToSync:allData];
+        NSDictionary * sessionDict = [NorwayDatabase serializeSessions:sessions];
+        NSData * compressedData = [NorwayDatabase encodeDictionary:sessionDict zlibCompress:YES];
+        urlRequest.HTTPBody = compressedData;
+        
+        self.dataTask = [[self defaultSession] dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate syncFailedDueToNetworkError:error];
+                });
+            }
+            else if (response) {
+                NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                    for (RecordingSession * session in sessions) {
+                        [session markSynced];
+                        [session save:self.serialDB];
+                    }
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:RecordingSessionChanged object:nil];
+                    
+                    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+                    [defaults setObject:[NSDate date] forKey:@"lastSyncDate"];
+                    [defaults setInteger:compressedData.length forKey:@"lastSyncByteCount"];
+                    [defaults synchronize];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.delegate syncCompletedSuccessfully];
+                    });
+                }
+                else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.delegate syncFailedDueToLoginError];
+                    });
+                }
+            }
+        }];
+        
+        [self.dataTask resume];
+    }];
 }
 
 @end

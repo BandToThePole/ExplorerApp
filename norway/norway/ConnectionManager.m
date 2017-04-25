@@ -31,20 +31,26 @@ NSString * const ConnectionManagerDisconnectedBand = @"disconnectedBand";
 }
 
 - (void)clientManager:(MSBClientManager *)clientManager clientDidConnect:(MSBClient *)client {
-    [[NSNotificationCenter defaultCenter] postNotificationName:ConnectionManagerConnectedBand object:client];
-    [self.waitingClientsMutable removeObject:client];
-    [self.connectedBands addObject:client];
+    if (client) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:ConnectionManagerConnectedBand object:client];
+        [self.waitingClientsMutable removeObject:client];
+        [self.connectedBands addObject:client];
+    }
 }
 
 - (void)clientManager:(MSBClientManager *)clientManager clientDidDisconnect:(MSBClient *)client {
-    [[NSNotificationCenter defaultCenter] postNotificationName:ConnectionManagerDisconnectedBand object:client];
-    [self.waitingClientsMutable removeObject:client];
-    [self.connectedBands addObject:client];
+    if (client) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:ConnectionManagerDisconnectedBand object:client];
+        [self.waitingClientsMutable removeObject:client];
+        [self.connectedBands addObject:client];
+    }
 }
 
 - (void)clientManager:(MSBClientManager *)clientManager client:(MSBClient *)client didFailToConnectWithError:(NSError *)error {
-    [self.waitingClientsMutable removeObject:client];
-    [self.connectedBands removeObject:client];
+    if (client) {
+        [self.waitingClientsMutable removeObject:client];
+        [self.connectedBands removeObject:client];
+    }
 }
 
 - (NSArray<MSBClient*>*)allBands {
@@ -70,9 +76,11 @@ NSString * const ConnectionManagerDisconnectedBand = @"disconnectedBand";
 }
 
 - (void)connect:(MSBClient *)client {
-    [self.waitingClientsMutable addObject:client];
-    [[MSBClientManager sharedManager] connectClient:client];
-    self.defaultConnectionString = client.connectionIdentifier.UUIDString;
+    if (client) {
+        [self.waitingClientsMutable addObject:client];
+        [[MSBClientManager sharedManager] connectClient:client];
+        self.defaultConnectionString = client.connectionIdentifier.UUIDString;
+    }
 }
 
 - (NSSet<MSBClient*>*)waitingClients {

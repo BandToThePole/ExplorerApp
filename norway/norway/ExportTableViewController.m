@@ -21,11 +21,18 @@
 
 @implementation ExportTableViewController
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     AppDelegate * ad = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     self.database = ad.database;
+    self.database.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reload:) name:RecordingSessionChanged object:nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -61,6 +68,10 @@
 }
 
 #pragma mark - Table view data source
+
+- (void)reload:(NSNotification*)note {
+    [self.tableView reloadData];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([SyncAccount isSignedIn]) {
@@ -146,8 +157,12 @@
         }
     }
     else if (indexPath.section == 1) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         if (indexPath.row == 0) {
-            [self.database startSync];
+            [self.database startSyncWithAllData:NO];
+        }
+        else if (indexPath.row == 1) {
+            [self.database startSyncWithAllData:YES];
         }
     }
 }
@@ -172,7 +187,7 @@
             [footer appendFormat:@"There are no sessions that need syncing. "];
         }
         else if (numberCanSync == 1) {
-            [footer appendFormat:@"There is one sessions that can be synced. "];
+            [footer appendFormat:@"There is one session that can be synced. "];
         }
         else {
             [footer appendFormat:@"There are %ld sessions that need syncing. ", (long)numberCanSync];
@@ -180,7 +195,17 @@
         
         NSDate * lastSync = [NorwayDatabase lastSync];
         if (lastSync) {
-            [footer appendFormat:@"The last sync was at %@.", lastSync];
+            NSDateFormatter * formatter = [NSDateFormatter new];
+            formatter.dateStyle = NSDateFormatterShortStyle;
+            formatter.timeStyle = NSDateFormatterLongStyle;
+            
+            NSNumberFormatter * numberFormatter = [NSNumberFormatter new];
+            numberFormatter.locale = [NSLocale currentLocale];
+            numberFormatter.usesGroupingSeparator = YES;
+            numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+            NSInteger byteCount = [NorwayDatabase lastSyncByteCount];
+            
+            [footer appendFormat:@"The last sync was at %@ and it contained %@ byte%@.", [formatter stringFromDate:lastSync], [numberFormatter stringFromNumber:@(byteCount)], byteCount == 1 ? @"" : @"s"];
         }
         else {
             [footer appendFormat:@"No data has been synced yet."];
@@ -188,6 +213,31 @@
         return footer;
     }
     return nil;
+}
+
+#pragma mark - Sync delegate
+
+- (void)syncFailedDueToLoginError {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.tableView reloadData];
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Login error" message:@"Couldn't submit data because of incorrect login details. Please sign out and enter them again" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)syncFailedDueToNetworkError:(NSError *)error {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.tableView reloadData];
+    
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Network error" message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)syncCompletedSuccessfully {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self.tableView reloadData];
 }
 
 @end

@@ -11,12 +11,19 @@
 #import "Query.h"
 #import "RecordingSession.h"
 
+@class NorwayDatabase;
 
+@protocol NorwayDatabaseDelegate <NSObject>
+
+- (void)syncCompletedSuccessfully;
+- (void)syncFailedDueToLoginError;
+- (void)syncFailedDueToNetworkError:(NSError*)error;
+
+@end
 
 @interface NorwayDatabase : NSObject
 
 + (NSString*)generateGUID;
-
 + (NSString*)databasePath;
 
 // Creates tables on creation
@@ -27,13 +34,13 @@
 - (NSArray<RecordingSession*>*)allSessions;
 
 + (NSDictionary*)serializeSessions:(NSArray<RecordingSession*>*)sessions;
-
 + (NSData*)encodeDictionary:(NSDictionary*)dict zlibCompress:(BOOL)compress;
 
+@property id<NorwayDatabaseDelegate> delegate;
+
 + (NSDate*)lastSync;
-
-- (void)startSync;
-
++ (NSInteger)lastSyncByteCount;
+- (void)startSyncWithAllData:(BOOL)allData;
 - (NSInteger)numberCanSync;
 
 @end
