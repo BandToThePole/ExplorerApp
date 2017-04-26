@@ -12,9 +12,7 @@
 
 #import <compression.h>
 
-@interface NorwayDatabase () {
-    NSURLSession * _defaultSession;
-}
+@interface NorwayDatabase ()
 
 @property NSOperationQueue * backgroundDataPrepQueue;
 
@@ -213,13 +211,6 @@
 
 #pragma mark - Sync
 
-- (NSURLSession*)defaultSession {
-    if (!_defaultSession) {
-        _defaultSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    }
-    return _defaultSession;
-}
-
 - (void)startSyncWithAllData:(BOOL)allData {
     [self.backgroundDataPrepQueue addOperationWithBlock:^{
         if (self.dataTask) {
@@ -227,10 +218,7 @@
             [self.dataTask cancel];
         }
         
-        NSString * username = [[SyncAccount username] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
-        NSString * password = [[SyncAccount password] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPasswordAllowedCharacterSet]];
-        
-        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"https://%@:%@@bandtothepoleweb.azurewebsites.net/api/data", username, password]];
+        NSURL * url = [SyncAccount apiUrl:@"data"];
         NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:60];
         urlRequest.HTTPMethod = @"POST";
         
@@ -239,7 +227,7 @@
         NSData * compressedData = [NorwayDatabase encodeDictionary:sessionDict zlibCompress:YES];
         urlRequest.HTTPBody = compressedData;
         
-        self.dataTask = [[self defaultSession] dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        self.dataTask = [[SyncAccount defaultSession] dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.delegate syncFailedDueToNetworkError:error];

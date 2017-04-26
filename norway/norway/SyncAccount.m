@@ -41,11 +41,48 @@
     return [[SyncAccount wrapper] myObjectForKey:(__bridge id)kSecValueData];
 }
 
-+ (void)setUsername:(NSString *)username passwword:(NSString *)password {
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:username forKey:@"username"];
-    [defaults setBool:YES forKey:@"signedin"];
-    [[SyncAccount wrapper] mySetObject:password forKey:(__bridge id)kSecValueData];
++ (NSURLSession*)defaultSession {
+    static NSURLSession * session;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    });
+    return session;
+}
+
++ (NSURL*)apiUrl:(NSString *)path {
+    return [SyncAccount apiUrl:path username:[SyncAccount username] password:[SyncAccount password]];
+}
+
++ (NSURL*)apiUrl:(NSString*)path username:(NSString*)username password:(NSString*)password {
+    username = [username stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLUserAllowedCharacterSet]];
+    password = [password stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPasswordAllowedCharacterSet]];
+    
+    return [NSURL URLWithString:[NSString stringWithFormat:@"https://%@:%@@bandtothepoleweb.azurewebsites.net/api/%@", username, password, path]];
+}
+
++ (void)setUsername:(NSString *)username password:(NSString *)password callback:(void (^)(BOOL))callback {
+    NSURLSessionDataTask * task = [[SyncAccount defaultSession] dataTaskWithURL:[SyncAccount apiUrl:@"check" username:username password:password] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                callback(NO);
+            }
+            else {
+                NSHTTPURLResponse * httpResponse = (NSHTTPURLResponse*)response;
+                if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+                    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+                    [defaults setObject:username forKey:@"username"];
+                    [defaults setBool:YES forKey:@"signedin"];
+                    [[SyncAccount wrapper] mySetObject:password forKey:(__bridge id)kSecValueData];
+                    callback(YES);
+                }
+                else {
+                    callback(NO);
+                }
+            }
+        });
+    }];
+    [task resume];
 }
 
 
