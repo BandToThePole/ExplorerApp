@@ -66,7 +66,7 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
             Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO sessions(start, end, guid, synced) VALUES(?,?,?,?)", self.startDate, self.endDate, self.guid, @(self.synced), nil];
             success = [query execute];
             if (success) {
-                self.databaseID = [serialDB lastInsertID];
+                self.databaseID = (NSInteger)[serialDB lastInsertID];
             }
         }
         else {

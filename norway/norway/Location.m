@@ -37,7 +37,7 @@
             Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO locations(time,lat,long,session) VALUES (?,?,?,?)", self.time, @(self.latitude), @(self.longitude), @(self.session.databaseID), nil];
             success = [query execute];
             if (success) {
-                self.databaseID = [serializedDB lastInsertID];
+                self.databaseID = (NSInteger)[serializedDB lastInsertID];
             }
         }
         else {

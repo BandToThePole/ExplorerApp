@@ -34,7 +34,7 @@
             Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO calories(time,session,kcalcount) VALUES(?,?,?)", self.time, @(self.session.databaseID), @(self.kcalCount), nil];
             success = [query execute];
             if (success) {
-                self.databaseID = database.lastInsertID;
+                self.databaseID = (NSInteger)database.lastInsertID;
             }
         }
         else {
@@ -50,7 +50,7 @@
 }
 
 - (NSString*)stringValue {
-    return [NSString stringWithFormat:@"%lu kcal", self.kcalCount];
+    return [NSString stringWithFormat:@"%zu kcal", (unsigned long)self.kcalCount];
 }
 
 - (BOOL)canCoalesceWith:(DatabaseObject *)other {

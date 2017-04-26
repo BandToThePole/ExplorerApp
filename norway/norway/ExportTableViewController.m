@@ -57,7 +57,7 @@
         NSData * databaseData = [NorwayDatabase encodeDictionary:dict zlibCompress:YES];
         //NSLog(@"JSON: %@", [[NSString alloc]  initWithData:databaseData encoding:NSUTF8StringEncoding]);
         [vc addAttachmentData:databaseData mimeType:@"application/json" fileName:@"alldata.json.zlib"];
-        [vc setMessageBody:[NSString stringWithFormat:@"Total size is %zu bytes", databaseData.length] isHTML:NO];
+        [vc setMessageBody:[NSString stringWithFormat:@"Total size is %zu bytes", (unsigned long)databaseData.length] isHTML:NO];
         [self presentViewController:vc animated:YES completion:nil];
     }
 }
@@ -145,8 +145,18 @@
                 // No op
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"Sign in" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [SyncAccount setUsername:[alert.textFields[0] text] passwword:[alert.textFields[1] text]];
-                [self.tableView reloadData];
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+                [SyncAccount setUsername:[alert.textFields[0] text] password:[alert.textFields[1] text] callback:^(BOOL success) {
+                    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                    if (success) {
+                        [self.tableView reloadData];
+                    }
+                    else {
+                        UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"Sign in failed" message:@"Sorry, it was not possible to authenticate you." preferredStyle:UIAlertControllerStyleAlert];
+                        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+                        [self presentViewController:alert animated:YES completion:nil];
+                    }
+                }];
             }]];
             
             [self presentViewController:alert animated:YES completion:nil];

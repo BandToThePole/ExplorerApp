@@ -39,7 +39,7 @@
             Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO heartrates(time, bpm, session) VALUES (?, ?, ?)", self.time, @(self.bpm), @(self.session.databaseID), nil];
             success = [query execute];
             if (success) {
-                self.databaseID = serialDB.lastInsertID;
+                self.databaseID = (NSInteger)serialDB.lastInsertID;
             }
         }
         else {
@@ -55,7 +55,7 @@
 }
 
 - (NSString*)stringValue {
-    return [NSString stringWithFormat:@"%zu bpm", self.bpm];
+    return [NSString stringWithFormat:@"%zu bpm", (unsigned long)self.bpm];
 }
 
 - (BOOL)canCoalesceWith:(DatabaseObject *)other {

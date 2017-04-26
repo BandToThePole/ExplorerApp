@@ -41,7 +41,7 @@
             Query * query = [[Query alloc] initWithDatabase:db string:@"INSERT INTO distances(time,distance,speed,pace,motion,session) VALUES (?,?,?,?,?,?)", self.time, @(self.totalDistance), @(self.speed), @(self.pace), self.motionType, @(self.session.databaseID), nil];
             success = [query execute];
             if (success) {
-                self.databaseID = [serializedDB lastInsertID];
+                self.databaseID = (NSInteger)[serializedDB lastInsertID];
             }
         }
         else {
@@ -62,7 +62,7 @@
 }
 
 - (NSString*)stringValue {
-    return [NSString stringWithFormat:@"%zu cm", self.totalDistance];
+    return [NSString stringWithFormat:@"%zu cm", (unsigned long)self.totalDistance];
 }
 
 - (BOOL)canCoalesceWith:(DatabaseObject *)other {
