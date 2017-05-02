@@ -17,9 +17,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"doc" ofType:@"html"];
-    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
-    [self.webView loadHTMLString:htmlString baseURL: [[NSBundle mainBundle] bundleURL]];
+    self.webView.hidden = YES;
+    self.webView.delegate = self;
+    NSString * htmlFilePath = [[NSBundle mainBundle] pathForResource:@"doc" ofType:@"html"];
+    NSURL * htmlFileURL = [NSURL fileURLWithPath:htmlFilePath];
+    NSURLRequest * htmlFileURLRequest = [NSURLRequest requestWithURL:htmlFileURL];
+    [self.webView loadRequest:htmlFileURLRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,5 +39,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    webView.hidden = NO;
+}
 
 @end
