@@ -8,10 +8,6 @@
 
 #import "AppDelegate.h"
 
-@import MobileCenter;
-@import MobileCenterAnalytics;
-@import MobileCenterCrashes;
-
 @interface AppDelegate ()
 
 @end
@@ -20,12 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [MSMobileCenter start:@"b4eabb45-6563-40c0-ac58-61b548eea858" withServices:@[
-                                                                                 [MSAnalytics class],
-                                                                                 [MSCrashes class]
-                                                                                 ]];
-    
     // Override point for customization after application launch.
     SerializedDatabase * serialDB = [[SerializedDatabase alloc] initWithPath:[NorwayDatabase databasePath] readOnly:NO error:nil];
     self.database = [[NorwayDatabase alloc] initWithSerialDatabase:serialDB];

@@ -5,8 +5,6 @@ platform :ios, '9.0'
 
 target 'norway' do
 
-pod 'MobileCenter'
-
 end
 
 target 'NorwayTests' do
