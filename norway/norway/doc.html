@@ -6,16 +6,56 @@
             body {
                 font: -apple-system-body;
             }
-        h1 {
-            font: -apply-system-headline;
-        }
-        
-        h2,h3,h4,h5,h6 {
-            font: -apple-system-subheadline;
-        }
+
+            h1 {
+                font: -apply-system-headline;
+                text-align: center;
+            }
+
+            h2,h3,h4,h5,h6 {
+                font: -apple-system-subheadline;
+                text-align: center;
+            }
         </style>
     </head>
     <body>
-        <h1>TODO</h1>
+        <h1>Connection</h1>
+        <p>This app supports connecting to multiple Microsoft Bands, although
+            only a single Band can be used at once. After firstly ensuring that
+            the Band is paired with your iPhone you will then see the Band
+            listed on the <strong>Connection</strong> tab. Tap on a Band to
+            connect to it. Once a Band has been connected to a checkmark will
+            show next to its name.</p>
+        <p>The app will automatically connect to the most recently connected to
+            Band when it is first launched.</p>
+        <h1>Recording</h1>
+        <p>After a connection to a Band has been established you can begin a
+            <strong>recording session</strong>, which is a short period for
+            which sensor data is collected from the Band and stored on your
+            iPhone - it won't yet be transmitted anywhere. It is important to
+            ensure that you manually stop a recording session within the app
+            before you attempt to sync sessions.</p>
+        <h1>Sessions</h1>
+        <p>All recorded sessions data can be accessed from within the app, with
+            visual indicators to show whether the data has been synced to the
+            cloud.</p>
+        <h1>Sending</h1>
+        <p>Firstly, you will need an account on the Band to the Pole web server.
+            When you first login it will verify that your account details are
+            correct, so it is important to have an Internet connection when you
+            first do this. There are three sync options:</P>
+        <ul>
+            <li><strong>Email:</strong> all recorded session data is compressed
+                and attached to an email.</li>
+            <li><strong>Sync new:</strong> attempts to sync all previously
+                unsynced sessions. If the sync doesn't succeed the sessions
+                won't be marked as synced, and they can be synced in the future
+                instead.</li>
+            <li><strong>Sync all:</strong> does the same as 'Sync new', but
+                sends all data (the server handles duplicates).</li>
+        </ul>
+        <p>The data from a single recording session will generally be on the
+            order of a few hundred bytes, which is way under the size of a
+            single TCP/IP packet.</p>
     </body>
 </html>
