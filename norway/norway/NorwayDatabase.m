@@ -164,9 +164,12 @@
 }
 
 + (NSDictionary*)serializeSessions:(NSArray<RecordingSession *> *)sessions {
-    NSISO8601DateFormatter * df = [NSISO8601DateFormatter new];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:enUSPOSIXLocale];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
     return @{ @"recording_sessions": [sessions nwy_map:^id(id x) {
-        return [x serializedDictionaryWithFormatter:df sinceDate:[x startDate]];
+        return [x serializedDictionaryWithFormatter:dateFormatter sinceDate:[x startDate]];
     }] };
 }
 

@@ -128,7 +128,7 @@ NSString * const RecordingSessionChanged = @"recordingSessionChanged";
     return self.distancesMutable;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter sinceDate:(NSDate *)date {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter sinceDate:(NSDate *)date {
     return @{ @"start": [formatter stringFromDate:self.startDate],
               @"end": [formatter stringFromDate:self.endDate],
               @"guid": self.guid,

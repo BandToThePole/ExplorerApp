@@ -27,7 +27,7 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-    self.tableView.refreshControl = self.refreshControl;
+//    self.tableView.refreshControl = self.refreshControl;
     self.connectionManager = [(AppDelegate*)[[UIApplication sharedApplication] delegate] connectionManager];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectedBand:) name:ConnectionManagerConnectedBand object:nil];

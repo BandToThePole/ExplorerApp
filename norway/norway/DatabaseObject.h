@@ -17,7 +17,7 @@
 @property NSInteger databaseID;
 
 - (BOOL)save:(SerializedDatabase*)serialDB;
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter*)formatter sinceDate:(NSDate*)date;
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter*)formatter sinceDate:(NSDate*)date;
 
 - (NSString*)stringValue;
 

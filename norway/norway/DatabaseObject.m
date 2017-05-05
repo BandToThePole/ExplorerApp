@@ -22,7 +22,7 @@
     return YES;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter sinceDate:(NSDate *)date {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter sinceDate:(NSDate *)date {
     return @{};
 }
 

@@ -45,7 +45,7 @@
     return success;
 }
 
-- (NSDictionary*)serializedDictionaryWithFormatter:(NSISO8601DateFormatter *)formatter sinceDate:(NSDate *)date {
+- (NSDictionary*)serializedDictionaryWithFormatter:(NSDateFormatter *)formatter sinceDate:(NSDate *)date {
     return @{ @"dt": @((NSInteger)round([self.time timeIntervalSinceDate:date])), @"total_calories_since_start": @(self.kcalCount) };
 }
 
